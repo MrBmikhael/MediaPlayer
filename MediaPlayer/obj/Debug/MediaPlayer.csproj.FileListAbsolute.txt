@@ -12,3 +12,20 @@ c:\users\010847211\documents\visual studio 2012\Projects\MediaPlayer\MediaPlayer
 c:\users\010847211\documents\visual studio 2012\Projects\MediaPlayer\MediaPlayer\bin\Debug\Interop.WMPLib.dll
 c:\users\010847211\documents\visual studio 2012\Projects\MediaPlayer\MediaPlayer\bin\Debug\AxInterop.WMPLib.dll
 c:\users\010847211\documents\visual studio 2012\Projects\MediaPlayer\MediaPlayer\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe.config
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\Interop.WMPLib.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.ResolveComReference.cache
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.exe
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pdb
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\Songs.sdf
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.pdb
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\EntityFramework.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\EntityFramework.xml
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\Interop.WMPLib.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csprojResolveAssemblyReference.cache
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Form1.resources
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Properties.Resources.resources
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.GenerateResource.Cache
