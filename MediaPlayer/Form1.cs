@@ -27,7 +27,7 @@ namespace MediaPlayer
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            string file = "C:\\Users\\bishoy\\Desktop\\Zein el-3omr - 3a2li Tar.mp3";
+            string file = "C:\\Users\\bishoy\\Downloads\\mawaly_Amr-Dyab_129213.mp3";
 
             UltraID3 a = new UltraID3();
             a.Read(file);
