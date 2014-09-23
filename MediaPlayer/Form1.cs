@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
+using HundredMilesSoftware.UltraID3Lib;
 
 namespace MediaPlayer
 {
@@ -19,7 +20,6 @@ namespace MediaPlayer
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
         }
-
         private void btnPrev_Click(object sender, EventArgs e)
         {
             //Player.controls.previous();
@@ -27,6 +27,25 @@ namespace MediaPlayer
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            string file = "C:\\Users\\bishoy\\Desktop\\Zein el-3omr - 3a2li Tar.mp3";
+
+            UltraID3 a = new UltraID3();
+            a.Read(file);
+            
+            if (a.ID3v2Tag.ExistsInFile)
+            {
+                MessageBox.Show("ID3V2 Tags Found");
+            }
+            else if (a.ID3v1Tag.ExistsInFile)
+            {
+                MessageBox.Show("ID3V1 Tags Found");
+            }
+            else
+            {
+                MessageBox.Show("No Tags Found");
+            }
+
+            Player.URL = file;
             Player.controls.play();
         }
 
