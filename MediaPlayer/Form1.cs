@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 using HundredMilesSoftware.UltraID3Lib;
+using System.IO;
+
 
 namespace MediaPlayer
 {
@@ -29,14 +31,22 @@ namespace MediaPlayer
         {
             string file = "C:\\Users\\bishoy\\Downloads\\mawaly_Amr-Dyab_129213.mp3";
 
-            UltraID3 a = new UltraID3();
-            a.Read(file);
-            
-            if (a.ID3v2Tag.ExistsInFile)
+            UltraID3 tagReader = new UltraID3();
+            tagReader.Read(file);
+
+            if (tagReader.ID3v2Tag.ExistsInFile)
             {
-                MessageBox.Show("ID3V2 Tags Found");
+                //MessageBox.Show("ID3V2 Tags Found");
+                int i = 0;
+
+                SongsDBDataSetTableAdapters.SongsTableAdapter s = new SongsDBDataSetTableAdapters.SongsTableAdapter();
+
+                s.Insert(0, file, tagReader.ID3v2Tag.Title, tagReader.ID3v2Tag.Artist, tagReader.ID3v2Tag.Album, (int)tagReader.ID3v2Tag.Year, tagReader.ID3v2Tag.Comments, tagReader.ID3v2Tag.Genre);
+                
+
+                int count = s.GetData().Count;
             }
-            else if (a.ID3v1Tag.ExistsInFile)
+            else if (tagReader.ID3v1Tag.ExistsInFile)
             {
                 MessageBox.Show("ID3V1 Tags Found");
             }
@@ -69,6 +79,31 @@ namespace MediaPlayer
         private void btnNext_Click(object sender, EventArgs e)
         {
             //Player.controls.next();
+        }
+
+        private void listView1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[]) (e.Data.GetData(DataFormats.FileDrop));
+                foreach (string file in files)
+                {
+                    if (File.Exists(file) && file.EndsWith(".mp3"))
+                    {
+                        // Add file to SQL Database
+                        MessageBox.Show(file);
+                    }
+                }
+            }
+
+        }
+
+        private void listView1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
         }
     }
 }

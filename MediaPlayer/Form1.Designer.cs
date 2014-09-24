@@ -54,6 +54,7 @@
             // 
             // listView1
             // 
+            this.listView1.AllowDrop = true;
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -73,6 +74,8 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
+            this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
             // 
             // columnFile
             // 
@@ -109,18 +112,18 @@
             this.addFileToolStripMenuItem,
             this.deleteSelectedToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 48);
             // 
             // addFileToolStripMenuItem
             // 
             this.addFileToolStripMenuItem.Name = "addFileToolStripMenuItem";
-            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.addFileToolStripMenuItem.Text = "Add File";
             // 
             // deleteSelectedToolStripMenuItem
             // 
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
-            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
             // 
             // panel1
@@ -192,7 +195,7 @@
             // 
             this.volControl.Location = new System.Drawing.Point(553, 3);
             this.volControl.Name = "volControl";
-            this.volControl.Size = new System.Drawing.Size(104, 42);
+            this.volControl.Size = new System.Drawing.Size(104, 45);
             this.volControl.TabIndex = 0;
             this.volControl.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
