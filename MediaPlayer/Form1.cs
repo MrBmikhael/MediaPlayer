@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
-using HundredMilesSoftware.UltraID3Lib;
 using System.IO;
-
 
 namespace MediaPlayer
 {
     public partial class Form1 : Form
     {
-        WMPLib.WindowsMediaPlayer Player;
+        public WMPLib.WindowsMediaPlayer Player;
         public Form1()
         {
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
+            SQLManager.getInstance();
         }
         private void btnPrev_Click(object sender, EventArgs e)
         {
@@ -30,30 +29,6 @@ namespace MediaPlayer
         private void btnPlay_Click(object sender, EventArgs e)
         {
             string file = "C:\\Users\\bishoy\\Downloads\\mawaly_Amr-Dyab_129213.mp3";
-
-            UltraID3 tagReader = new UltraID3();
-            tagReader.Read(file);
-
-            if (tagReader.ID3v2Tag.ExistsInFile)
-            {
-                //MessageBox.Show("ID3V2 Tags Found");
-                int i = 0;
-
-                SongsDBDataSetTableAdapters.SongsTableAdapter s = new SongsDBDataSetTableAdapters.SongsTableAdapter();
-
-                s.Insert(0, file, tagReader.ID3v2Tag.Title, tagReader.ID3v2Tag.Artist, tagReader.ID3v2Tag.Album, (int)tagReader.ID3v2Tag.Year, tagReader.ID3v2Tag.Comments, tagReader.ID3v2Tag.Genre);
-                
-
-                int count = s.GetData().Count;
-            }
-            else if (tagReader.ID3v1Tag.ExistsInFile)
-            {
-                MessageBox.Show("ID3V1 Tags Found");
-            }
-            else
-            {
-                MessageBox.Show("No Tags Found");
-            }
 
             Player.URL = file;
             Player.controls.play();
