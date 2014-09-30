@@ -6,6 +6,7 @@ using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace MediaPlayer
 {
@@ -13,10 +14,7 @@ namespace MediaPlayer
     {
         private static SQLManager Instance = null;
 
-        private SqlCeConnection connection;
-        private DataSet data;
-        private SqlCeDataAdapter adapter;
-
+        private SqlConnection connection;
         public static SQLManager getInstance()
         {
             if (Instance == null)
@@ -28,59 +26,110 @@ namespace MediaPlayer
             connectToDB();
         }
 
-        public bool connectToDB()
+        private bool connectToDB()
         {
-            string dbfile = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName + "\\Songs.sdf";
-            connection = new SqlCeConnection("datasource=" + dbfile);
+            string dbfile = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName + "\\Database.mdf";
 
-            // Read all rows from the table test_table into a dataset (note, the adapter automatically opens the connection)
-            SqlCeDataAdapter adapter = new SqlCeDataAdapter("select * from test_table", connection);
-            DataSet data = new DataSet();
-            adapter.Fill(data);
-            
+            try
+            {
+                connection = new SqlConnection();
+                connection.ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=" + dbfile + ";Integrated Security=True";
+                connection.Open();
+            }
+            catch
+            { return false; }
 
-            // Add a row to the test_table (assume that table consists of a text column)
-            //data.Tables[0].Rows.Add(new object[] { "New row added by code" });
-
-            // Save data back to the databasefile
-            //adapter.Update(data);
-
-            // Close 
-            //connection.Close();
             return true;
         }
 
         public bool SaveDB()
         {
-
+            connection.Close();
             return true;
+        }
+
+        public List<Song> getSongs()
+        {
+            List<Song> SongList = new List<Song>();
+
+            SqlCommand select = new SqlCommand("SELECT * FROM Songs;", connection);
+            SqlDataReader reader = select.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Song a = new Song();
+                a.File = reader["filePath"].ToString();
+                a.Title = reader["title"].ToString();
+                a.Artist = reader["artist"].ToString();
+                a.Album = reader["album"].ToString();
+                //a.Year = Convert.ToInt32(reader["year"].ToString());
+                a.Comment = reader["comment"].ToString();
+                a.Genre = reader["genre"].ToString();
+
+                SongList.Add(a);
+            }
+
+            reader.Close();
+
+            return SongList;
+        }
+
+        public int getCount()
+        {
+            SqlCommand c = new SqlCommand("SELECT count(*) FROM Songs;", connection);
+            SqlDataReader reader = c.ExecuteReader();
+            reader.Read();
+            int a = Convert.ToInt32(reader[0].ToString());
+            reader.Close();
+            return a;
         }
 
         public bool Insert(string file)
         {
+            if (connection.State == ConnectionState.Closed)
+            {
+                connectToDB();
+            }
+
+            //if (connection.State == ConnectionState.Executing || connection.State == ConnectionState.Connecting || connection.State == ConnectionState.Fetching)
+            //{
+            //    while (connection.State != ConnectionState.Open)
+            //    {
+            //        if (connection.State == ConnectionState.Broken)
+            //        {
+            //            connectToDB();
+            //            break;
+            //        }
+            //    }
+            //}
+
             UltraID3 tagReader = new UltraID3();
             tagReader.Read(file);
 
-            if (tagReader.ID3v2Tag.ExistsInFile)
+            if (tagReader.ID3v2Tag.ExistsInFile || tagReader.ID3v1Tag.ExistsInFile)
             {
                 //MessageBox.Show("ID3V2 Tags Found");
                 try
                 {
-                    //SongsDBDataSetTableAdapters.SongsTableAdapter s = new SongsDBDataSetTableAdapters.SongsTableAdapter();
-                    //s.Insert(0, file, tagReader.ID3v2Tag.Title, tagReader.ID3v2Tag.Artist, tagReader.ID3v2Tag.Album, (int)tagReader.ID3v2Tag.Year, tagReader.ID3v2Tag.Comments, tagReader.ID3v2Tag.Genre);
+                    string q = "INSERT INTO Songs (filePath, title, artist, album, year, comment, genre) VALUES ('" + file;
+                    q += "', '" + tagReader.Title.ToString();
+                    q += "', '" + tagReader.Artist.ToString();
+                    q += "', '" + tagReader.Album.ToString();
+                    q += "', '" + tagReader.Year.ToString();
+                    q += "', '" + tagReader.Comments.ToString();
+                    q += "', '" + tagReader.Genre.ToString() + "');";
+
+                    SqlCommand insertCommand = new SqlCommand(q, connection);
+                    insertCommand.ExecuteNonQuery();
+                    //SaveDB();
 
                 }
                 catch
                 {
                     return false;
                 }
+                return true;
 
-                //int count = s.GetData().Count;
-
-            }
-            else if (tagReader.ID3v1Tag.ExistsInFile)
-            {
-                //MessageBox.Show("ID3V1 Tags Found");
             }
             else
             {

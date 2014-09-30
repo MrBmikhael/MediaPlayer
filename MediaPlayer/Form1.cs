@@ -28,9 +28,7 @@ namespace MediaPlayer
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            string file = "C:\\Users\\bishoy\\Downloads\\mawaly_Amr-Dyab_129213.mp3";
-
-            Player.URL = file;
+            //Player.URL = file;
             Player.controls.play();
         }
 
@@ -66,7 +64,8 @@ namespace MediaPlayer
                     if (File.Exists(file) && file.EndsWith(".mp3"))
                     {
                         // Add file to SQL Database
-                        MessageBox.Show(file);
+                        SQLManager.getInstance().Insert(file);
+                        reloadList();
                     }
                 }
             }
@@ -79,6 +78,32 @@ namespace MediaPlayer
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+        private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(SQLManager.getInstance().getCount().ToString());
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SQLManager.getInstance().SaveDB();
+        }
+
+        public void reloadList()
+        {
+            songLibrary.Clear();
+            List<Song> SongList = SQLManager.getInstance().getSongs();
+
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = SongList[i].File;
+                item.SubItems.Add(SongList[i].Title);
+                item.SubItems.Add(SongList[i].Album);
+
+                songLibrary.Items.Add(item);
+            }
         }
     }
 }
