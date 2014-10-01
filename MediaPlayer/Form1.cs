@@ -19,7 +19,7 @@ namespace MediaPlayer
         {
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
-            SQLManager.getInstance();
+            reloadList();
         }
         private void btnPrev_Click(object sender, EventArgs e)
         {
@@ -28,7 +28,15 @@ namespace MediaPlayer
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            //Player.URL = file;
+            if (songLibrary.SelectedItems.Count > 0)
+            {
+                Player.URL = songLibrary.SelectedItems[0].Text;
+            }
+            else
+            {
+                Player.URL = songLibrary.Items[0].Text;
+            }
+
             Player.controls.play();
         }
 
@@ -62,12 +70,10 @@ namespace MediaPlayer
                 foreach (string file in files)
                 {
                     if (File.Exists(file) && file.EndsWith(".mp3"))
-                    {
-                        // Add file to SQL Database
                         SQLManager.getInstance().Insert(file);
-                        reloadList();
-                    }
                 }
+
+                reloadList();
             }
 
         }
@@ -80,11 +86,6 @@ namespace MediaPlayer
                 e.Effect = DragDropEffects.None;
         }
 
-        private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(SQLManager.getInstance().getCount().ToString());
-        }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SQLManager.getInstance().SaveDB();
@@ -92,7 +93,7 @@ namespace MediaPlayer
 
         public void reloadList()
         {
-            songLibrary.Clear();
+            songLibrary.Items.Clear();
             List<Song> SongList = SQLManager.getInstance().getSongs();
 
             for (int i = 0; i < SongList.Count; i++)
@@ -100,10 +101,46 @@ namespace MediaPlayer
                 ListViewItem item = new ListViewItem();
                 item.Text = SongList[i].File;
                 item.SubItems.Add(SongList[i].Title);
+                item.SubItems.Add(SongList[i].Artist);
                 item.SubItems.Add(SongList[i].Album);
+                item.SubItems.Add(SongList[i].Year.ToString());
+                item.SubItems.Add(SongList[i].Comment);
+                item.SubItems.Add(SongList[i].Genre);
 
                 songLibrary.Items.Add(item);
             }
+        }
+
+        private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < songLibrary.SelectedItems.Count; i++)
+            {
+                SQLManager.getInstance().deleteFile(songLibrary.SelectedItems[i].Text);
+            }
+
+            reloadList();
+        }
+
+        private void addSongsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openSongs = new OpenFileDialog();
+            openSongs.Multiselect = true;
+            openSongs.Filter = "*.mp3|*.mp3";
+
+            if (openSongs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (string file in openSongs.FileNames)
+                {
+                    SQLManager.getInstance().Insert(file);
+                }
+
+                reloadList();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

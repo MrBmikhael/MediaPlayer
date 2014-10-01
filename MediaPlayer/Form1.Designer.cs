@@ -51,7 +51,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tESTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volControl)).BeginInit();
@@ -73,6 +72,7 @@
             this.columnComment,
             this.columnGenre});
             this.songLibrary.ContextMenuStrip = this.contextMenuStrip1;
+            this.songLibrary.FullRowSelect = true;
             this.songLibrary.GridLines = true;
             this.songLibrary.Location = new System.Drawing.Point(12, 27);
             this.songLibrary.Name = "songLibrary";
@@ -131,6 +131,7 @@
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
             this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
+            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -219,8 +220,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addSongsToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.tESTToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -228,21 +228,16 @@
             // addSongsToolStripMenuItem
             // 
             this.addSongsToolStripMenuItem.Name = "addSongsToolStripMenuItem";
-            this.addSongsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.addSongsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addSongsToolStripMenuItem.Text = "Add Songs";
+            this.addSongsToolStripMenuItem.Click += new System.EventHandler(this.addSongsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // tESTToolStripMenuItem
-            // 
-            this.tESTToolStripMenuItem.Name = "tESTToolStripMenuItem";
-            this.tESTToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.tESTToolStripMenuItem.Text = "TEST";
-            this.tESTToolStripMenuItem.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -254,7 +249,7 @@
             this.Controls.Add(this.songLibrary);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Media Player";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -291,7 +286,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSongsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tESTToolStripMenuItem;
     }
 }
 
