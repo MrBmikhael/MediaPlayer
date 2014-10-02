@@ -15,6 +15,7 @@ namespace MediaPlayer
     public partial class Form1 : Form
     {
         public WMPLib.WindowsMediaPlayer Player;
+        public ListViewItem currentlyPlaying;
         public Form1()
         {
             InitializeComponent();
@@ -23,18 +24,39 @@ namespace MediaPlayer
         }
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            //Player.controls.previous();
+            int i = songLibrary.Items.IndexOf(currentlyPlaying);
+
+            if (i == 0)
+            {
+                Player.URL = songLibrary.Items[songLibrary.Items.Count-1].Text;
+                currentlyPlaying = songLibrary.Items[songLibrary.Items.Count - 1];
+            }
+            else
+            {
+                i--;
+                Player.URL = songLibrary.Items[i].Text;
+                Player.controls.play();
+                currentlyPlaying = songLibrary.Items[i];
+            }
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            if (Player.playState == WMPPlayState.wmppsPaused)
+            {
+                Player.controls.play();
+                return;
+            }
+            
             if (songLibrary.SelectedItems.Count > 0)
             {
                 Player.URL = songLibrary.SelectedItems[0].Text;
+                currentlyPlaying = songLibrary.SelectedItems[0];
             }
             else
             {
                 Player.URL = songLibrary.Items[0].Text;
+                currentlyPlaying = songLibrary.Items[0];
             }
 
             Player.controls.play();
@@ -59,7 +81,20 @@ namespace MediaPlayer
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            //Player.controls.next();
+            int i = songLibrary.Items.IndexOf(currentlyPlaying);
+
+            if (i == songLibrary.Items.Count - 1)
+            {
+                Player.URL = songLibrary.Items[0].Text;
+                currentlyPlaying = songLibrary.Items[0];
+            }
+            else
+            {
+                i++;
+                Player.URL = songLibrary.Items[i].Text;
+                Player.controls.play();
+                currentlyPlaying = songLibrary.Items[i];
+            }
         }
 
         private void listView1_DragDrop(object sender, DragEventArgs e)
@@ -88,7 +123,7 @@ namespace MediaPlayer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SQLManager.getInstance().SaveDB();
+            SQLManager.getInstance().CloseDB();
         }
 
         public void reloadList()
@@ -120,8 +155,35 @@ namespace MediaPlayer
 
             reloadList();
         }
+        
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        private void addSongsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void playASongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openSongs = new OpenFileDialog();
+            openSongs.Multiselect = false;
+            openSongs.Filter = "*.mp3|*.mp3";
+
+            if (openSongs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Player.URL = openSongs.FileNames[0].ToString();
+                Player.controls.play();
+            }
+        }
+
+        private void deleteSelectedToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in songLibrary.SelectedItems)
+            {
+                songLibrary.Items.Remove(item);
+                SQLManager.getInstance().deleteFile(item.Text);
+            }
+        }
+
+        private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openSongs = new OpenFileDialog();
             openSongs.Multiselect = true;
@@ -138,9 +200,6 @@ namespace MediaPlayer
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 }

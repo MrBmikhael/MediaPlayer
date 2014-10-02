@@ -42,7 +42,7 @@ namespace MediaPlayer
             return true;
         }
 
-        public bool SaveDB()
+        public bool CloseDB()
         {
             connection.Close();
             return true;
