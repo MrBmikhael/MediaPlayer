@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace MediaPlayer
 {
-    class SQLManager
+    public class SQLManager
     {
         private static SQLManager Instance = null;
 
@@ -73,17 +73,7 @@ namespace MediaPlayer
 
             return SongList;
         }
-
-        public int getCount()
-        {
-            SqlCommand c = new SqlCommand("SELECT count(*) FROM Songs;", connection);
-            SqlDataReader reader = c.ExecuteReader();
-            reader.Read();
-            int a = Convert.ToInt32(reader[0].ToString());
-            reader.Close();
-            return a;
-        }
-
+        
         public bool deleteFile(string file)
         {
             if (connection.State == ConnectionState.Closed)
@@ -108,52 +98,28 @@ namespace MediaPlayer
                 connectToDB();
             }
 
-            //if (connection.State == ConnectionState.Executing || connection.State == ConnectionState.Connecting || connection.State == ConnectionState.Fetching)
-            //{
-            //    while (connection.State != ConnectionState.Open)
-            //    {
-            //        if (connection.State == ConnectionState.Broken)
-            //        {
-            //            connectToDB();
-            //            break;
-            //        }
-            //    }
-            //}
-
             UltraID3 tagReader = new UltraID3();
             tagReader.Read(file);
 
-            //if (tagReader.ID3v2Tag.ExistsInFile || tagReader.ID3v1Tag.ExistsInFile)
-            //{
-                //MessageBox.Show("ID3V2 Tags Found");
-                try
-                {
-                    string q = "INSERT INTO Songs (filePath, title, artist, album, year, comment, genre) VALUES ('" + file;
-                    q += "', '" + tagReader.Title.ToString();
-                    q += "', '" + tagReader.Artist.ToString();
-                    q += "', '" + tagReader.Album.ToString();
-                    q += "', '" + tagReader.Year.ToString();
-                    q += "', '" + tagReader.Comments.ToString();
-                    q += "', '" + tagReader.Genre.ToString() + "');";
+            try
+            {
+                string q = "INSERT INTO Songs (filePath, title, artist, album, year, comment, genre) VALUES ('" + file;
+                q += "', '" + tagReader.Title.ToString();
+                q += "', '" + tagReader.Artist.ToString();
+                q += "', '" + tagReader.Album.ToString();
+                q += "', '" + tagReader.Year.ToString();
+                q += "', '" + tagReader.Comments.ToString();
+                q += "', '" + tagReader.Genre.ToString() + "');";
 
-                    SqlCommand insertCommand = new SqlCommand(q, connection);
-                    insertCommand.ExecuteNonQuery();
-                    //SaveDB();
-
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
-
-            //}
-            //else
-            //{
-            //    //MessageBox.Show("No Tags Found");
-            //}
-
+                SqlCommand insertCommand = new SqlCommand(q, connection);
+                insertCommand.ExecuteNonQuery();
+            }
+            catch
+            {
+                return false;
+            }
             return true;
+
         }
     }
 }

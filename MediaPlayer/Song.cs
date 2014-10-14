@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaPlayer
 {
-    class Song
+    public class Song
     {
         public string File { get; set; }
         public string Title { get; set; }

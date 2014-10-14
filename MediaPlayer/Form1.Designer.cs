@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.songLibrary = new System.Windows.Forms.ListView();
             this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,7 +47,6 @@
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
-            this.volControl = new System.Windows.Forms.TrackBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +55,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volControl)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +119,7 @@
             this.addFileToolStripMenuItem,
             this.deleteSelectedToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 48);
             // 
             // addFileToolStripMenuItem
             // 
@@ -145,7 +144,6 @@
             this.panel1.Controls.Add(this.btnPlay);
             this.panel1.Controls.Add(this.btnPause);
             this.panel1.Controls.Add(this.btnPrev);
-            this.panel1.Controls.Add(this.volControl);
             this.panel1.Location = new System.Drawing.Point(12, 512);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(660, 51);
@@ -153,61 +151,53 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(327, 3);
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.Location = new System.Drawing.Point(456, 3);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(75, 33);
             this.btnNext.TabIndex = 5;
-            this.btnNext.Text = ">>";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(246, 3);
+            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
+            this.btnStop.Location = new System.Drawing.Point(375, 3);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.Size = new System.Drawing.Size(75, 33);
             this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "[]";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(165, 3);
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
+            this.btnPlay.Location = new System.Drawing.Point(294, 3);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.Size = new System.Drawing.Size(75, 33);
             this.btnPlay.TabIndex = 3;
-            this.btnPlay.Text = ">";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(84, 3);
+            this.btnPause.Image = ((System.Drawing.Image)(resources.GetObject("btnPause.Image")));
+            this.btnPause.Location = new System.Drawing.Point(213, 3);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.Size = new System.Drawing.Size(75, 33);
             this.btnPause.TabIndex = 2;
-            this.btnPause.Text = "| |";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(3, 3);
+            this.btnPrev.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev.Image")));
+            this.btnPrev.Location = new System.Drawing.Point(132, 3);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(75, 23);
+            this.btnPrev.Size = new System.Drawing.Size(75, 33);
             this.btnPrev.TabIndex = 1;
-            this.btnPrev.Text = "<<";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
-            // 
-            // volControl
-            // 
-            this.volControl.Location = new System.Drawing.Point(553, 3);
-            this.volControl.Name = "volControl";
-            this.volControl.Size = new System.Drawing.Size(104, 45);
-            this.volControl.TabIndex = 0;
-            this.volControl.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // menuStrip1
             // 
@@ -271,8 +261,6 @@
             this.Text = "Media Player";
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volControl)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -287,7 +275,6 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPrev;
-        private System.Windows.Forms.TrackBar volControl;
         private System.Windows.Forms.ColumnHeader columnFile;
         private System.Windows.Forms.ColumnHeader columnTitle;
         private System.Windows.Forms.ColumnHeader columnArtist;
