@@ -24,6 +24,12 @@ namespace MediaPlayer
         }
         private void btnPrev_Click(object sender, EventArgs e)
         {
+            if (songLibrary.Items.Count < 1)
+            {
+                MessageBox.Show("the library is empty.");
+                return;
+            }
+
             int i = songLibrary.Items.IndexOf(currentlyPlaying);
 
             if (i == 0)
@@ -53,10 +59,14 @@ namespace MediaPlayer
                 Player.URL = songLibrary.SelectedItems[0].Text;
                 currentlyPlaying = songLibrary.SelectedItems[0];
             }
-            else
+            else if (songLibrary.Items.Count > 0)
             {
                 Player.URL = songLibrary.Items[0].Text;
                 currentlyPlaying = songLibrary.Items[0];
+            }
+            else
+            {
+                MessageBox.Show("The library is empty.");
             }
 
             Player.controls.play();
@@ -81,6 +91,12 @@ namespace MediaPlayer
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if (songLibrary.Items.Count < 1)
+            {
+                MessageBox.Show("the library is empty.");
+                return;
+            }
+
             int i = songLibrary.Items.IndexOf(currentlyPlaying);
 
             if (i == songLibrary.Items.Count - 1)
