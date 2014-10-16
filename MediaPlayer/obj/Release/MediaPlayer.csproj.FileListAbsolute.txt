@@ -17,3 +17,21 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\AxInterop.W
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.exe
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.pdb
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csprojResolveAssemblyReference.cache
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\Interop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\AxInterop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.ResolveComReference.cache
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.exe
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.pdb
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Database.mdf
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Database_log.ldf
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\MediaPlayer.exe
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\MediaPlayer.pdb
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\EntityFramework.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\EntityFramework.xml
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\UltraID3Lib.xml
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Interop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\AxInterop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csprojResolveAssemblyReference.cache
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.Form1.resources
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.Properties.Resources.resources
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.GenerateResource.Cache

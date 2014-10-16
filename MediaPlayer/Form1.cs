@@ -32,18 +32,26 @@ namespace MediaPlayer
 
             int i = songLibrary.Items.IndexOf(currentlyPlaying);
 
+            if (currentlyPlaying != null)
+                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+
             if (i == 0)
             {
+                Player.controls.stop();
                 Player.URL = songLibrary.Items[songLibrary.Items.Count-1].Text;
+                Player.controls.play();
                 currentlyPlaying = songLibrary.Items[songLibrary.Items.Count - 1];
             }
             else
             {
                 i--;
+                Player.controls.stop();
                 Player.URL = songLibrary.Items[i].Text;
                 Player.controls.play();
                 currentlyPlaying = songLibrary.Items[i];
             }
+            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Focus();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -53,7 +61,10 @@ namespace MediaPlayer
                 Player.controls.play();
                 return;
             }
-            
+
+            if (currentlyPlaying != null)
+                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+
             if (songLibrary.SelectedItems.Count > 0)
             {
                 Player.URL = songLibrary.SelectedItems[0].Text;
@@ -70,10 +81,15 @@ namespace MediaPlayer
             }
 
             Player.controls.play();
+            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Focus();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
+            if (currentlyPlaying != null)
+                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+
             if (Player.playState == WMPPlayState.wmppsPaused)
             {
                 Player.controls.play();
@@ -82,11 +98,18 @@ namespace MediaPlayer
             {
                 Player.controls.pause();
             }
+            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Focus();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             Player.controls.stop();
+
+            if (currentlyPlaying != null)
+                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+
+            songLibrary.Focus();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -99,18 +122,27 @@ namespace MediaPlayer
 
             int i = songLibrary.Items.IndexOf(currentlyPlaying);
 
+            if (currentlyPlaying != null)
+                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+
             if (i == songLibrary.Items.Count - 1)
             {
+                Player.controls.stop();
                 Player.URL = songLibrary.Items[0].Text;
+                Player.controls.play();
                 currentlyPlaying = songLibrary.Items[0];
             }
             else
             {
                 i++;
+                Player.controls.stop();
                 Player.URL = songLibrary.Items[i].Text;
                 Player.controls.play();
                 currentlyPlaying = songLibrary.Items[i];
             }
+
+            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Focus();
         }
 
         private void listView1_DragDrop(object sender, DragEventArgs e)
@@ -139,6 +171,7 @@ namespace MediaPlayer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Player.controls.stop();
             SQLManager.getInstance().CloseDB();
         }
 
