@@ -22,6 +22,7 @@ namespace MediaPlayer
             Player = new WMPLib.WindowsMediaPlayer();
             reloadList();
         }
+
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (songLibrary.Items.Count < 1)
@@ -50,6 +51,7 @@ namespace MediaPlayer
                 Player.controls.play();
                 currentlyPlaying = songLibrary.Items[i];
             }
+
             songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
             songLibrary.Focus();
         }
@@ -248,7 +250,5 @@ namespace MediaPlayer
                 reloadList();
             }
         }
-
-        
     }
 }
