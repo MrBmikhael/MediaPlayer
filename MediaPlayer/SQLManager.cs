@@ -14,7 +14,7 @@ namespace MediaPlayer
     {
         private static SQLManager Instance = null;
 
-        private SqlConnection connection;
+        public SqlConnection connection;
         public static SQLManager getInstance()
         {
             if (Instance == null)
@@ -47,50 +47,7 @@ namespace MediaPlayer
             connection.Close();
             return true;
         }
-
-        public List<Song> getSongs()
-        {
-            List<Song> SongList = new List<Song>();
-
-            SqlCommand select = new SqlCommand("SELECT * FROM Songs;", connection);
-            SqlDataReader reader = select.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Song a = new Song();
-                a.File = reader["filePath"].ToString();
-                a.Title = reader["title"].ToString();
-                a.Artist = reader["artist"].ToString();
-                a.Album = reader["album"].ToString();
-                a.Year = Convert.ToInt32(reader["year"].ToString());
-                a.Comment = reader["comment"].ToString();
-                a.Genre = reader["genre"].ToString();
-
-                SongList.Add(a);
-            }
-
-            reader.Close();
-
-            return SongList;
-        }
         
-        public bool deleteFile(string file)
-        {
-            if (connection.State == ConnectionState.Closed)
-            {
-                connectToDB();
-            }
-
-            try
-            {
-                SqlCommand delete = new SqlCommand("DELETE FROM Songs WHERE filePath = '" + file + "';", connection);
-                delete.ExecuteNonQuery();
-            }
-            catch { return false; }
-
-            return true;
-        }
-
         public bool Insert(string file)
         {
             if (connection.State == ConnectionState.Closed)
@@ -121,5 +78,7 @@ namespace MediaPlayer
             return true;
 
         }
+
+
     }
 }

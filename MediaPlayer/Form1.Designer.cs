@@ -2,15 +2,8 @@
 {
     partial class Form1
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -30,6 +23,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.songLibrary = new System.Windows.Forms.ListView();
             this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,23 +41,56 @@
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnNext = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnPlay = new System.Windows.Forms.Button();
-            this.btnPause = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playASongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.createPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // playlistContextMenu
+            // 
+            this.playlistContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.playlistContextMenu.Name = "playlistContextMenu";
+            this.playlistContextMenu.Size = new System.Drawing.Size(153, 70);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem1.Text = "Add";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "Delete";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // songLibrary
             // 
@@ -77,9 +109,9 @@
             this.songLibrary.ContextMenuStrip = this.contextMenuStrip1;
             this.songLibrary.FullRowSelect = true;
             this.songLibrary.GridLines = true;
-            this.songLibrary.Location = new System.Drawing.Point(12, 27);
+            this.songLibrary.Location = new System.Drawing.Point(195, 27);
             this.songLibrary.Name = "songLibrary";
-            this.songLibrary.Size = new System.Drawing.Size(770, 490);
+            this.songLibrary.Size = new System.Drawing.Size(587, 490);
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
             this.songLibrary.View = System.Windows.Forms.View.Details;
@@ -93,7 +125,7 @@
             // columnTitle
             // 
             this.columnTitle.Text = "Title";
-            this.columnTitle.Width = 255;
+            this.columnTitle.Width = 217;
             // 
             // columnArtist
             // 
@@ -147,6 +179,20 @@
             this.panel1.Size = new System.Drawing.Size(770, 51);
             this.panel1.TabIndex = 1;
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnNext);
+            this.panel2.Controls.Add(this.btnPrev);
+            this.panel2.Controls.Add(this.btnStop);
+            this.panel2.Controls.Add(this.btnPause);
+            this.panel2.Controls.Add(this.btnPlay);
+            this.panel2.Location = new System.Drawing.Point(183, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(404, 36);
+            this.panel2.TabIndex = 6;
+            // 
             // btnNext
             // 
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -161,6 +207,21 @@
             this.btnNext.TabIndex = 5;
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrev.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrev.BackgroundImage = global::MediaPlayer.Properties.Resources.background;
+            this.btnPrev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrev.Image = global::MediaPlayer.Properties.Resources.prev;
+            this.btnPrev.Location = new System.Drawing.Point(3, 3);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(75, 33);
+            this.btnPrev.TabIndex = 1;
+            this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnStop
             // 
@@ -177,21 +238,6 @@
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // btnPlay
-            // 
-            this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPlay.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPlay.BackgroundImage = global::MediaPlayer.Properties.Resources.background;
-            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPlay.Image = global::MediaPlayer.Properties.Resources.play;
-            this.btnPlay.Location = new System.Drawing.Point(165, 3);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(75, 33);
-            this.btnPlay.TabIndex = 3;
-            this.btnPlay.UseVisualStyleBackColor = false;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
             // btnPause
             // 
             this.btnPause.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -207,20 +253,20 @@
             this.btnPause.UseVisualStyleBackColor = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
-            // btnPrev
+            // btnPlay
             // 
-            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPrev.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPrev.BackgroundImage = global::MediaPlayer.Properties.Resources.background;
-            this.btnPrev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrev.Image = global::MediaPlayer.Properties.Resources.prev;
-            this.btnPrev.Location = new System.Drawing.Point(3, 3);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(75, 33);
-            this.btnPrev.TabIndex = 1;
-            this.btnPrev.UseVisualStyleBackColor = false;
-            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPlay.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPlay.BackgroundImage = global::MediaPlayer.Properties.Resources.background;
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPlay.Image = global::MediaPlayer.Properties.Resources.play;
+            this.btnPlay.Location = new System.Drawing.Point(165, 3);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(75, 33);
+            this.btnPlay.TabIndex = 3;
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // menuStrip1
             // 
@@ -238,6 +284,9 @@
             this.addSongsToolStripMenuItem,
             this.playASongToolStripMenuItem,
             this.deleteSelectedToolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.createPlaylistToolStripMenuItem,
+            this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -264,6 +313,23 @@
             this.deleteSelectedToolStripMenuItem1.Text = "Delete Selected";
             this.deleteSelectedToolStripMenuItem1.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem1_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            // 
+            // createPlaylistToolStripMenuItem
+            // 
+            this.createPlaylistToolStripMenuItem.Name = "createPlaylistToolStripMenuItem";
+            this.createPlaylistToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.createPlaylistToolStripMenuItem.Text = "Create Playlist";
+            this.createPlaylistToolStripMenuItem.Click += new System.EventHandler(this.createPlaylistToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(151, 6);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -271,25 +337,28 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // panel2
+            // treeView1
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnNext);
-            this.panel2.Controls.Add(this.btnPrev);
-            this.panel2.Controls.Add(this.btnStop);
-            this.panel2.Controls.Add(this.btnPause);
-            this.panel2.Controls.Add(this.btnPlay);
-            this.panel2.Location = new System.Drawing.Point(183, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(404, 36);
-            this.panel2.TabIndex = 6;
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.Location = new System.Drawing.Point(12, 27);
+            this.treeView1.Name = "treeView1";
+            treeNode3.Name = "libNode";
+            treeNode3.Text = "Library";
+            treeNode4.Name = "playlistsNode";
+            treeNode4.Text = "Playlists";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4});
+            this.treeView1.Size = new System.Drawing.Size(177, 490);
+            this.treeView1.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 586);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.songLibrary);
@@ -298,11 +367,12 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Media Player";
+            this.playlistContextMenu.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,6 +404,14 @@
         private System.Windows.Forms.ToolStripMenuItem playASongToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ContextMenuStrip playlistContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem createPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

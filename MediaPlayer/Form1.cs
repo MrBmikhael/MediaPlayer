@@ -20,6 +20,7 @@ namespace MediaPlayer
         {
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
+            treeView1.Nodes[1].Expand();
             reloadList();
         }
 
@@ -180,7 +181,7 @@ namespace MediaPlayer
         public void reloadList()
         {
             songLibrary.Items.Clear();
-            List<Song> SongList = SQLManager.getInstance().getSongs();
+            List<Song> SongList = Library.getSongs();
 
             for (int i = 0; i < SongList.Count; i++)
             {
@@ -201,7 +202,7 @@ namespace MediaPlayer
         {
             for (int i = 0; i < songLibrary.SelectedItems.Count; i++)
             {
-                SQLManager.getInstance().deleteFile(songLibrary.SelectedItems[i].Text);
+                Library.deleteSong(songLibrary.SelectedItems[i].Text);
             }
 
             reloadList();
@@ -230,7 +231,7 @@ namespace MediaPlayer
             foreach (ListViewItem item in songLibrary.SelectedItems)
             {
                 songLibrary.Items.Remove(item);
-                SQLManager.getInstance().deleteFile(item.Text);
+                Library.deleteSong(item.Text);
             }
         }
 
@@ -249,6 +250,35 @@ namespace MediaPlayer
 
                 reloadList();
             }
+        }
+
+        private void reloadPlaylists()
+        {
+            treeView1.Nodes[1].Nodes.Clear();
+            
+            List<string> playlists = Playlist.getAllPlaylists();
+
+            foreach (string a in playlists)
+            {
+                treeView1.Nodes[1].Nodes.Add(a).ContextMenuStrip = playlistContextMenu;
+            }
+            treeView1.Refresh();
+        }
+        private void createPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create Playlist
+            CreatePlaylistForm CPF = new CreatePlaylistForm();
+
+            if (CPF.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                reloadPlaylists();
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Playlist.deletePlaylist(treeView1.SelectedNode.Text);
+            reloadPlaylists();
         }
     }
 }

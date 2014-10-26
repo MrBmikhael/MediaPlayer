@@ -70,6 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreatePlaylistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePlaylistForm.Designer.cs">
+      <DependentUpon>CreatePlaylistForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <Compile Include="Song.cs" />
     <Compile Include="SQLManager.cs" />
+    <EmbeddedResource Include="CreatePlaylistForm.resx">
+      <DependentUpon>CreatePlaylistForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,11 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\pause.jpg" />
     <None Include="Resources\play.jpg" />

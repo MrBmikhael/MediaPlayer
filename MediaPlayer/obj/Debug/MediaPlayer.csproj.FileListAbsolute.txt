@@ -17,3 +17,4 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.c
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.exe
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pdb
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csprojResolveAssemblyReference.cache
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.CreatePlaylistForm.resources
