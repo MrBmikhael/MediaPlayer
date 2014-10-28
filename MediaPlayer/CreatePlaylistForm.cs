@@ -15,6 +15,7 @@ namespace MediaPlayer
         public CreatePlaylistForm()
         {
             InitializeComponent();
+            textBox1.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)

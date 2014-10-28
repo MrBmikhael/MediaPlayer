@@ -181,7 +181,18 @@ namespace MediaPlayer
         public void reloadList()
         {
             songLibrary.Items.Clear();
-            List<Song> SongList = Library.getSongs();
+            List<Song> SongList = new List<Song>();
+
+            if (treeView1.SelectedNode.Text == "Library" || treeView1.SelectedNode.Text == "Playlists")
+            {
+                SongList = Library.getSongs();
+            }
+            else
+            {
+                
+            }
+
+
 
             for (int i = 0; i < SongList.Count; i++)
             {
@@ -263,10 +274,10 @@ namespace MediaPlayer
                 treeView1.Nodes[1].Nodes.Add(a).ContextMenuStrip = playlistContextMenu;
             }
             treeView1.Refresh();
+            treeView1.Nodes[1].Expand();
         }
         private void createPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Create Playlist
             CreatePlaylistForm CPF = new CreatePlaylistForm();
 
             if (CPF.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -279,6 +290,11 @@ namespace MediaPlayer
         {
             Playlist.deletePlaylist(treeView1.SelectedNode.Text);
             reloadPlaylists();
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            reloadList();
         }
     }
 }

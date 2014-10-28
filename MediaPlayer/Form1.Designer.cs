@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -70,7 +70,7 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2});
             this.playlistContextMenu.Name = "playlistContextMenu";
-            this.playlistContextMenu.Size = new System.Drawing.Size(153, 70);
+            this.playlistContextMenu.Size = new System.Drawing.Size(108, 48);
             // 
             // toolStripMenuItem1
             // 
@@ -88,7 +88,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
             this.toolStripMenuItem2.Text = "Delete";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -343,15 +343,16 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "libNode";
-            treeNode3.Text = "Library";
-            treeNode4.Name = "playlistsNode";
-            treeNode4.Text = "Playlists";
+            treeNode1.Name = "libNode";
+            treeNode1.Text = "Library";
+            treeNode2.Name = "playlistsNode";
+            treeNode2.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(177, 490);
             this.treeView1.TabIndex = 3;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // Form1
             // 
