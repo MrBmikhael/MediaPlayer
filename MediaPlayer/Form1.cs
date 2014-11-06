@@ -21,7 +21,6 @@ namespace MediaPlayer
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
             treeView1.Nodes[1].Expand();
-            reloadList();
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -183,16 +182,21 @@ namespace MediaPlayer
             songLibrary.Items.Clear();
             List<Song> SongList = new List<Song>();
 
-            if (treeView1.SelectedNode.Text == "Library" || treeView1.SelectedNode.Text == "Playlists")
+            if (treeView1.SelectedNode != null)
             {
-                SongList = Library.getSongs();
+                if (treeView1.SelectedNode.Text == "Library" || treeView1.SelectedNode.Text == "Playlists")
+                {
+                    SongList = Library.getSongs();
+                }
+                else
+                {
+                    //load playlist
+                }
             }
             else
             {
-                
+                SongList = Library.getSongs();
             }
-
-
 
             for (int i = 0; i < SongList.Count; i++)
             {
@@ -295,6 +299,12 @@ namespace MediaPlayer
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             reloadList();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            reloadList();
+            reloadPlaylists();
         }
     }
 }

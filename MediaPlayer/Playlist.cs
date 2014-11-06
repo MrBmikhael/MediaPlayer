@@ -95,7 +95,7 @@ namespace MediaPlayer
 
         public static void addToPlalist(string listName, int songID)
         {
-
+            addToPlalist(getPlaylistID(listName), songID);
         }
 
         public static void addToPlalist(int listID, int songID)
@@ -108,7 +108,7 @@ namespace MediaPlayer
             List<Song> SongList = new List<Song>();
             int id = getPlaylistID(name);
 
-            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE ID IN (SELECT * FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ");", SQLManager.getInstance().connection);
+            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE SongID IN (SELECT * FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ");", SQLManager.getInstance().connection);
             SqlDataReader reader = select.ExecuteReader();
 
             while (reader.Read())
