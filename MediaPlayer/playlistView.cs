@@ -164,12 +164,20 @@ namespace MediaPlayer
 
                 reloadList();
             }
+            else if (e.Data.GetDataPresent(typeof(ListViewItem)))
+            {
+                ListViewItem a = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+                songLibrary.Items.Add((ListViewItem)a.Clone());
+                Playlist.addToPlalist(playlistName, SQLManager.getInstance().getSongID(a.Text));
+            }
 
         }
 
         private void listView1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else if (e.Data.GetDataPresent(typeof(ListViewItem)))
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
@@ -247,6 +255,8 @@ namespace MediaPlayer
                 foreach (string file in openSongs.FileNames)
                 {
                     SQLManager.getInstance().Insert(file);
+                    int id = SQLManager.getInstance().getSongID(file);
+                    Playlist.addToPlalist(playlistName, id);
                 }
 
                 reloadList();

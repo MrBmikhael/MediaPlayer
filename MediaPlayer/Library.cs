@@ -37,21 +37,7 @@ namespace MediaPlayer
 
             return SongList;
         }
-        private int getPlaylistID(string name)
-        {
-            int id = 0;
-
-            try
-            {
-                SqlCommand select = new SqlCommand("SELECT * FROM Playlists WHERE playlistName = '" + name + "');", SQLManager.getInstance().connection);
-                SqlDataReader reader = select.ExecuteReader();
-                reader.Read();
-                id = Convert.ToInt32(reader["Id"].ToString());
-            }
-            catch { }
-
-            return id;
-        }
+        
         public static void deleteSong(int id)
         {
             delete(id);
@@ -66,6 +52,7 @@ namespace MediaPlayer
                 SqlDataReader reader = select.ExecuteReader();
                 reader.Read();
                 id = Convert.ToInt32(reader["Id"].ToString());
+                reader.Close();
             }
             catch { }
 
@@ -83,7 +70,7 @@ namespace MediaPlayer
                 SqlCommand delete = new SqlCommand("DELETE FROM Songs WHERE id = " + id.ToString() + ";", SQLManager.getInstance().connection);
                 delete.ExecuteNonQuery();
 
-                delete = new SqlCommand("DELETE * FROM PlaylistSongs WHERE songID = " + id.ToString() + ";", SQLManager.getInstance().connection);
+                delete = new SqlCommand("DELETE FROM PlaylistSongs WHERE songID = " + id.ToString() + ";", SQLManager.getInstance().connection);
                 delete.ExecuteNonQuery();
             }
             catch { }

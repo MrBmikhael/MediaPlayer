@@ -23,9 +23,16 @@ namespace MediaPlayer
             if (textBox1.Text == "")
                 return;
 
-            Playlist.createPlaylist(textBox1.Text);
-            DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Close();
+            if (!Playlist.getAllPlaylists().Contains(textBox1.Text))
+            {
+                Playlist.createPlaylist(textBox1.Text);
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("There is a playlist with that name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
     }
 }

@@ -100,7 +100,7 @@ namespace MediaPlayer
 
         public static void addToPlalist(int listID, int songID)
         {
-
+            SQLManager.getInstance().Execute("INSERT INTO PlaylistSongs (playlistID, songID) VALUES (" + listID + ", " + songID + ");");
         }
 
         public static List<Song> getPlaylistContents(string name)
@@ -108,24 +108,22 @@ namespace MediaPlayer
             List<Song> SongList = new List<Song>();
             int id = getPlaylistID(name);
 
-            //SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE SongID IN (SELECT * FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ");", SQLManager.getInstance().connection);
-            //SqlDataReader reader = select.ExecuteReader();
+            SqlCommand select = new SqlCommand("SELECT * FROM PlaylistSongs WHERE playlistID = " + id + ";", SQLManager.getInstance().connection);
+            SqlDataReader reader = select.ExecuteReader();
 
-            //while (reader.Read())
-            //{
-            //    Song a = new Song();
-            //    a.File = reader["filePath"].ToString();
-            //    a.Title = reader["title"].ToString();
-            //    a.Artist = reader["artist"].ToString();
-            //    a.Album = reader["album"].ToString();
-            //    a.Year = Convert.ToInt32(reader["year"].ToString());
-            //    a.Comment = reader["comment"].ToString();
-            //    a.Genre = reader["genre"].ToString();
+            List<int> SongIDSList = new List<int>();
 
-            //    SongList.Add(a);
-            //}
+            while (reader.Read())
+            {
+                SongIDSList.Add(Convert.ToInt32(reader["songID"]));
+            }
 
-            //reader.Close();
+            reader.Close();
+
+            for (int i = 0; i < SongIDSList.Count; i++)
+            {
+                SongList.Add(SQLManager.getInstance().getSongByID(SongIDSList[i]));
+            }
 
             return SongList;
         }

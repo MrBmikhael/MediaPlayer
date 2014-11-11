@@ -27,6 +27,7 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songLibrary = new System.Windows.Forms.ListView();
             this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,7 +56,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,7 +69,7 @@
             this.toolStripMenuItem2,
             this.openInANewWindowToolStripMenuItem});
             this.playlistContextMenu.Name = "playlistContextMenu";
-            this.playlistContextMenu.Size = new System.Drawing.Size(198, 70);
+            this.playlistContextMenu.Size = new System.Drawing.Size(198, 48);
             // 
             // toolStripMenuItem2
             // 
@@ -77,6 +77,13 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItem2.Text = "Delete";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // openInANewWindowToolStripMenuItem
+            // 
+            this.openInANewWindowToolStripMenuItem.Name = "openInANewWindowToolStripMenuItem";
+            this.openInANewWindowToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.openInANewWindowToolStripMenuItem.Text = "Open in a new Window";
+            this.openInANewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInANewWindowToolStripMenuItem_Click);
             // 
             // songLibrary
             // 
@@ -101,6 +108,7 @@
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
             this.songLibrary.View = System.Windows.Forms.View.Details;
+            this.songLibrary.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.songLibrary_ItemDrag);
             this.songLibrary.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.songLibrary.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
             // 
@@ -339,13 +347,6 @@
             this.treeView1.Size = new System.Drawing.Size(177, 490);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // openInANewWindowToolStripMenuItem
-            // 
-            this.openInANewWindowToolStripMenuItem.Name = "openInANewWindowToolStripMenuItem";
-            this.openInANewWindowToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.openInANewWindowToolStripMenuItem.Text = "Open in a new Window";
-            this.openInANewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInANewWindowToolStripMenuItem_Click);
             // 
             // Form1
             // 

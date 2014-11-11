@@ -190,7 +190,7 @@ namespace MediaPlayer
                 }
                 else
                 {
-                    //load playlist
+                    SongList = Playlist.getPlaylistContents(treeView1.SelectedNode.Text);
                 }
             }
             else
@@ -312,5 +312,11 @@ namespace MediaPlayer
             playlistView a = new playlistView(treeView1.SelectedNode.Text);
             a.Show();
         }
+
+        private void songLibrary_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.Copy);
+        }
+
     }
 }

@@ -22,7 +22,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(playlistView));
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -311,7 +311,7 @@
             this.createPlaylistToolStripMenuItem.Name = "createPlaylistToolStripMenuItem";
             this.createPlaylistToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.createPlaylistToolStripMenuItem.Text = "Create Playlist";
-            //
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -324,7 +324,7 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // Form1
+            // playlistView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -334,7 +334,7 @@
             this.Controls.Add(this.songLibrary);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(810, 625);
-            this.Name = "Form1";
+            this.Name = "playlistView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Playlist";
             this.playlistContextMenu.ResumeLayout(false);
