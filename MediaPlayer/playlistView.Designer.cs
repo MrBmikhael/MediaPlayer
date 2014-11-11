@@ -53,11 +53,13 @@
             this.createPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.volumeBar1 = new System.Windows.Forms.TrackBar();
             this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // playlistContextMenu
@@ -99,7 +101,7 @@
             this.songLibrary.GridLines = true;
             this.songLibrary.Location = new System.Drawing.Point(12, 27);
             this.songLibrary.Name = "songLibrary";
-            this.songLibrary.Size = new System.Drawing.Size(770, 490);
+            this.songLibrary.Size = new System.Drawing.Size(770, 463);
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
             this.songLibrary.View = System.Windows.Forms.View.Details;
@@ -162,23 +164,24 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 523);
+            this.panel1.Location = new System.Drawing.Point(12, 492);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(770, 51);
+            this.panel1.Size = new System.Drawing.Size(770, 82);
             this.panel1.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.volumeBar1);
             this.panel2.Controls.Add(this.btnNext);
             this.panel2.Controls.Add(this.btnPrev);
             this.panel2.Controls.Add(this.btnStop);
             this.panel2.Controls.Add(this.btnPause);
             this.panel2.Controls.Add(this.btnPlay);
-            this.panel2.Location = new System.Drawing.Point(183, 3);
+            this.panel2.Location = new System.Drawing.Point(183, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(404, 36);
+            this.panel2.Size = new System.Drawing.Size(404, 66);
             this.panel2.TabIndex = 6;
             // 
             // btnNext
@@ -324,6 +327,18 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // volumeBar1
+            // 
+            this.volumeBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.volumeBar1.Location = new System.Drawing.Point(4, 42);
+            this.volumeBar1.Maximum = 100;
+            this.volumeBar1.Name = "volumeBar1";
+            this.volumeBar1.Size = new System.Drawing.Size(398, 45);
+            this.volumeBar1.TabIndex = 6;
+            this.volumeBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.volumeBar1.Value = 50;
+            this.volumeBar1.Scroll += new System.EventHandler(this.volumeBar1_Scroll);
+            // 
             // playlistView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,8 +356,10 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,6 +397,7 @@
         private System.Windows.Forms.ToolStripMenuItem createPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem openInANewWindowToolStripMenuItem;
+        private System.Windows.Forms.TrackBar volumeBar1;
     }
 }
 

@@ -10,7 +10,6 @@ namespace MediaPlayer
 {
     class Playlist
     {
-        public int listID;
         public Playlist()
         {
 
@@ -122,7 +121,7 @@ namespace MediaPlayer
 
             for (int i = 0; i < SongIDSList.Count; i++)
             {
-                SongList.Add(SQLManager.getInstance().getSongByID(SongIDSList[i]));
+                SongList.Add(Library.getSongByID(SongIDSList[i]));
             }
 
             return SongList;

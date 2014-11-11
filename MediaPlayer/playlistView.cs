@@ -14,139 +14,146 @@ namespace MediaPlayer
 {
     public partial class playlistView : Form
     {
-        public WMPLib.WindowsMediaPlayer Player;
-        public ListViewItem currentlyPlaying;
+        public PlayerWrapper PlayerW;
+        public int currentlyPlaying;
         public string playlistName;
         public playlistView(string playlistName)
         {
             InitializeComponent();
 
-            Player = new WMPLib.WindowsMediaPlayer();
+            PlayerW = PlayerWrapper.getInstance();
             this.playlistName = playlistName;
             reloadList();
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            if (songLibrary.Items.Count < 1)
+            if (songLibrary.Items.Count == 0)
             {
-                MessageBox.Show("The playlist is empty.");
+                MessageBox.Show("Please add some songs first.");
                 return;
             }
 
-            int i = songLibrary.Items.IndexOf(currentlyPlaying);
+            int i = currentlyPlaying;
 
-            if (currentlyPlaying != null)
-                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+            songLibrary.Items[currentlyPlaying].Selected = false;
 
             if (i == 0)
             {
-                Player.controls.stop();
-                Player.URL = songLibrary.Items[songLibrary.Items.Count-1].Text;
-                Player.controls.play();
-                currentlyPlaying = songLibrary.Items[songLibrary.Items.Count - 1];
+                PlayerW.Player.controls.stop();
+                PlayerW.Player.URL = songLibrary.Items[songLibrary.Items.Count - 1].Text;
+                PlayerW.Player.controls.play();
+                currentlyPlaying = songLibrary.Items.Count - 1;
             }
             else
             {
                 i--;
-                Player.controls.stop();
-                Player.URL = songLibrary.Items[i].Text;
-                Player.controls.play();
-                currentlyPlaying = songLibrary.Items[i];
+                PlayerW.Player.controls.stop();
+                PlayerW.Player.URL = songLibrary.Items[i].Text;
+                PlayerW.Player.controls.play();
+                currentlyPlaying = i;
             }
 
-            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (Player.playState == WMPPlayState.wmppsPaused)
+            if (songLibrary.Items.Count == 0)
             {
-                Player.controls.play();
+                MessageBox.Show("Please add some songs first.");
                 return;
             }
 
-            if (currentlyPlaying != null)
-                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+            if (PlayerW.Player.playState == WMPPlayState.wmppsPaused)
+            {
+                PlayerW.Player.controls.play();
+                return;
+            }
+
+            songLibrary.Items[currentlyPlaying].Selected = false;
 
             if (songLibrary.SelectedItems.Count > 0)
             {
-                Player.URL = songLibrary.SelectedItems[0].Text;
-                currentlyPlaying = songLibrary.SelectedItems[0];
+                PlayerW.Player.URL = songLibrary.SelectedItems[0].Text;
+                currentlyPlaying = songLibrary.Items.IndexOf(songLibrary.SelectedItems[0]);
             }
             else if (songLibrary.Items.Count > 0)
             {
-                Player.URL = songLibrary.Items[0].Text;
-                currentlyPlaying = songLibrary.Items[0];
-            }
-            else
-            {
-                MessageBox.Show("The playlist is empty.");
+                PlayerW.Player.URL = songLibrary.Items[0].Text;
+                currentlyPlaying = 0;
             }
 
-            Player.controls.play();
-            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            PlayerW.Player.controls.play();
+            songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            if (currentlyPlaying != null)
-                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
-
-            if (Player.playState == WMPPlayState.wmppsPaused)
+            if (songLibrary.Items.Count == 0)
             {
-                Player.controls.play();
+                MessageBox.Show("Please add some songs first.");
+                return;
+            }
+
+            songLibrary.Items[currentlyPlaying].Selected = false;
+
+            if (PlayerW.Player.playState == WMPPlayState.wmppsPaused)
+            {
+                PlayerW.Player.controls.play();
             }
             else
             {
-                Player.controls.pause();
+                PlayerW.Player.controls.pause();
             }
-            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            Player.controls.stop();
-
-            if (currentlyPlaying != null)
-                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
-
+            if (songLibrary.Items.Count == 0)
+            {
+                MessageBox.Show("Please add some songs first.");
+                return;
+            }
+            
+            PlayerW.Player.controls.stop();
+            songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (songLibrary.Items.Count < 1)
+            if (songLibrary.Items.Count == 0)
             {
-                MessageBox.Show("The playlist is empty.");
+                MessageBox.Show("Please add some songs first.");
                 return;
             }
 
-            int i = songLibrary.Items.IndexOf(currentlyPlaying);
+            int i = currentlyPlaying;
 
-            if (currentlyPlaying != null)
-                songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = false;
+            songLibrary.Items[currentlyPlaying].Selected = false;
 
             if (i == songLibrary.Items.Count - 1)
             {
-                Player.controls.stop();
-                Player.URL = songLibrary.Items[0].Text;
-                Player.controls.play();
-                currentlyPlaying = songLibrary.Items[0];
+                PlayerW.Player.controls.stop();
+                PlayerW.Player.URL = songLibrary.Items[0].Text;
+                PlayerW.Player.controls.play();
+                currentlyPlaying = 0;
             }
             else
             {
                 i++;
-                Player.controls.stop();
-                Player.URL = songLibrary.Items[i].Text;
-                Player.controls.play();
-                currentlyPlaying = songLibrary.Items[i];
+                PlayerW.Player.controls.stop();
+                PlayerW.Player.URL = songLibrary.Items[i].Text;
+                PlayerW.Player.controls.play();
+                currentlyPlaying = i;
             }
 
-            songLibrary.Items[songLibrary.Items.IndexOf(currentlyPlaying)].Selected = true;
+            songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
         }
 
@@ -168,7 +175,7 @@ namespace MediaPlayer
             {
                 ListViewItem a = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
                 songLibrary.Items.Add((ListViewItem)a.Clone());
-                Playlist.addToPlalist(playlistName, SQLManager.getInstance().getSongID(a.Text));
+                Playlist.addToPlalist(playlistName, Library.getSongID(a.Text));
             }
 
         }
@@ -185,7 +192,7 @@ namespace MediaPlayer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Player.controls.stop();
+            PlayerW.Player.controls.stop();
         }
 
         public void reloadList()
@@ -230,8 +237,8 @@ namespace MediaPlayer
 
             if (openSongs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Player.URL = openSongs.FileNames[0].ToString();
-                Player.controls.play();
+                PlayerW.Player.URL = openSongs.FileNames[0].ToString();
+                PlayerW.Player.controls.play();
             }
         }
 
@@ -255,12 +262,17 @@ namespace MediaPlayer
                 foreach (string file in openSongs.FileNames)
                 {
                     SQLManager.getInstance().Insert(file);
-                    int id = SQLManager.getInstance().getSongID(file);
+                    int id = Library.getSongID(file);
                     Playlist.addToPlalist(playlistName, id);
                 }
 
                 reloadList();
             }
+        }
+
+        private void volumeBar1_Scroll(object sender, EventArgs e)
+        {
+            PlayerW.Player.settings.volume = volumeBar1.Value;
         }
 
     }

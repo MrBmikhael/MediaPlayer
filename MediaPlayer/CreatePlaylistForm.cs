@@ -16,6 +16,7 @@ namespace MediaPlayer
         {
             InitializeComponent();
             textBox1.Focus();
+            textBox1.Select();
         }
 
         private void button1_Click(object sender, EventArgs e)

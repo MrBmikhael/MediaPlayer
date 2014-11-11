@@ -37,6 +37,44 @@ namespace MediaPlayer
 
             return SongList;
         }
+
+        public static int getSongID(string path)
+        {
+            int SongID = 0;
+            SqlCommand command = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + path + "';", SQLManager.getInstance().connection);
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            SongID = Convert.ToInt32(reader["SongID"].ToString());
+
+            reader.Close();
+
+            return SongID;
+        }
+
+        public static Song getSongByID(int id)
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM Songs WHERE SongID = " + id + ";", SQLManager.getInstance().connection);
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            Song a = new Song();
+            a.File = reader["filePath"].ToString();
+            a.Title = reader["title"].ToString();
+            a.Artist = reader["artist"].ToString();
+            a.Album = reader["album"].ToString();
+            a.Year = Convert.ToInt32(reader["year"].ToString());
+            a.Comment = reader["comment"].ToString();
+            a.Genre = reader["genre"].ToString();
+
+            reader.Close();
+            return a;
+        }
+
+        public static void insert(string f)
+        {
+            SQLManager.getInstance().Insert(f);
+        }
         
         public static void deleteSong(int id)
         {
@@ -46,16 +84,11 @@ namespace MediaPlayer
         {
             int id = 0;
 
-            try
-            {
-                SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + file + "');", SQLManager.getInstance().connection);
-                SqlDataReader reader = select.ExecuteReader();
-                reader.Read();
-                id = Convert.ToInt32(reader["Id"].ToString());
-                reader.Close();
-            }
-            catch { }
-
+            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + file + "';", SQLManager.getInstance().connection);
+            SqlDataReader reader = select.ExecuteReader();
+            reader.Read();
+            id = Convert.ToInt32(reader["SongID"].ToString());
+            reader.Close();
             delete(id);
         }
         private static void delete(int id)
@@ -67,7 +100,7 @@ namespace MediaPlayer
 
             try
             {
-                SqlCommand delete = new SqlCommand("DELETE FROM Songs WHERE id = " + id.ToString() + ";", SQLManager.getInstance().connection);
+                SqlCommand delete = new SqlCommand("DELETE FROM Songs WHERE SongID = " + id.ToString() + ";", SQLManager.getInstance().connection);
                 delete.ExecuteNonQuery();
 
                 delete = new SqlCommand("DELETE FROM PlaylistSongs WHERE songID = " + id.ToString() + ";", SQLManager.getInstance().connection);
