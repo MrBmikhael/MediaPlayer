@@ -1,6 +1,6 @@
 ﻿namespace MediaPlayer
 {
-    partial class Form1
+    partial class playlistView
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -23,10 +23,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songLibrary = new System.Windows.Forms.ListView();
             this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +53,6 @@
             this.createPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,14 +66,19 @@
             this.toolStripMenuItem2,
             this.openInANewWindowToolStripMenuItem});
             this.playlistContextMenu.Name = "playlistContextMenu";
-            this.playlistContextMenu.Size = new System.Drawing.Size(198, 70);
+            this.playlistContextMenu.Size = new System.Drawing.Size(198, 48);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
             this.toolStripMenuItem2.Text = "Delete";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // openInANewWindowToolStripMenuItem
+            // 
+            this.openInANewWindowToolStripMenuItem.Name = "openInANewWindowToolStripMenuItem";
+            this.openInANewWindowToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.openInANewWindowToolStripMenuItem.Text = "Open in a new Window";
             // 
             // songLibrary
             // 
@@ -95,9 +97,9 @@
             this.songLibrary.ContextMenuStrip = this.contextMenuStrip1;
             this.songLibrary.FullRowSelect = true;
             this.songLibrary.GridLines = true;
-            this.songLibrary.Location = new System.Drawing.Point(195, 27);
+            this.songLibrary.Location = new System.Drawing.Point(12, 27);
             this.songLibrary.Name = "songLibrary";
-            this.songLibrary.Size = new System.Drawing.Size(587, 490);
+            this.songLibrary.Size = new System.Drawing.Size(770, 490);
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
             this.songLibrary.View = System.Windows.Forms.View.Details;
@@ -309,8 +311,7 @@
             this.createPlaylistToolStripMenuItem.Name = "createPlaylistToolStripMenuItem";
             this.createPlaylistToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.createPlaylistToolStripMenuItem.Text = "Create Playlist";
-            this.createPlaylistToolStripMenuItem.Click += new System.EventHandler(this.createPlaylistToolStripMenuItem_Click);
-            // 
+            //
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -323,36 +324,11 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // treeView1
-            // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.Location = new System.Drawing.Point(12, 27);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "libNode";
-            treeNode1.Text = "Library";
-            treeNode2.Name = "playlistsNode";
-            treeNode2.Text = "Playlists";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(177, 490);
-            this.treeView1.TabIndex = 3;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // openInANewWindowToolStripMenuItem
-            // 
-            this.openInANewWindowToolStripMenuItem.Name = "openInANewWindowToolStripMenuItem";
-            this.openInANewWindowToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.openInANewWindowToolStripMenuItem.Text = "Open in a new Window";
-            this.openInANewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInANewWindowToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 586);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.songLibrary);
@@ -360,8 +336,7 @@
             this.MinimumSize = new System.Drawing.Size(810, 625);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Media Player";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Playlist";
             this.playlistContextMenu.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -399,7 +374,6 @@
         private System.Windows.Forms.ToolStripMenuItem playASongToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ContextMenuStrip playlistContextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

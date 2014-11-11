@@ -108,24 +108,24 @@ namespace MediaPlayer
             List<Song> SongList = new List<Song>();
             int id = getPlaylistID(name);
 
-            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE SongID IN (SELECT * FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ");", SQLManager.getInstance().connection);
-            SqlDataReader reader = select.ExecuteReader();
+            //SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE SongID IN (SELECT * FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ");", SQLManager.getInstance().connection);
+            //SqlDataReader reader = select.ExecuteReader();
 
-            while (reader.Read())
-            {
-                Song a = new Song();
-                a.File = reader["filePath"].ToString();
-                a.Title = reader["title"].ToString();
-                a.Artist = reader["artist"].ToString();
-                a.Album = reader["album"].ToString();
-                a.Year = Convert.ToInt32(reader["year"].ToString());
-                a.Comment = reader["comment"].ToString();
-                a.Genre = reader["genre"].ToString();
+            //while (reader.Read())
+            //{
+            //    Song a = new Song();
+            //    a.File = reader["filePath"].ToString();
+            //    a.Title = reader["title"].ToString();
+            //    a.Artist = reader["artist"].ToString();
+            //    a.Album = reader["album"].ToString();
+            //    a.Year = Convert.ToInt32(reader["year"].ToString());
+            //    a.Comment = reader["comment"].ToString();
+            //    a.Genre = reader["genre"].ToString();
 
-                SongList.Add(a);
-            }
+            //    SongList.Add(a);
+            //}
 
-            reader.Close();
+            //reader.Close();
 
             return SongList;
         }

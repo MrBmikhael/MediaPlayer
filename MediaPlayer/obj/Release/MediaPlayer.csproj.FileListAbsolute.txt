@@ -36,3 +36,4 @@ C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlay
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.Properties.Resources.resources
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.GenerateResource.Cache
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.CreatePlaylistForm.resources
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.playlistView.resources

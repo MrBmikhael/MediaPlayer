@@ -12,21 +12,25 @@ using System.IO;
 
 namespace MediaPlayer
 {
-    public partial class Form1 : Form
+    public partial class playlistView : Form
     {
         public WMPLib.WindowsMediaPlayer Player;
         public ListViewItem currentlyPlaying;
-        public Form1()
+        public string playlistName;
+        public playlistView(string playlistName)
         {
             InitializeComponent();
+
             Player = new WMPLib.WindowsMediaPlayer();
+            this.playlistName = playlistName;
+            reloadList();
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (songLibrary.Items.Count < 1)
             {
-                MessageBox.Show("The library is empty.");
+                MessageBox.Show("The playlist is empty.");
                 return;
             }
 
@@ -78,7 +82,7 @@ namespace MediaPlayer
             }
             else
             {
-                MessageBox.Show("The library is empty.");
+                MessageBox.Show("The playlist is empty.");
             }
 
             Player.controls.play();
@@ -117,7 +121,7 @@ namespace MediaPlayer
         {
             if (songLibrary.Items.Count < 1)
             {
-                MessageBox.Show("The library is empty.");
+                MessageBox.Show("The playlist is empty.");
                 return;
             }
 
@@ -174,29 +178,11 @@ namespace MediaPlayer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Player.controls.stop();
-            SQLManager.getInstance().CloseDB();
         }
 
         public void reloadList()
         {
-            songLibrary.Items.Clear();
-            List<Song> SongList = new List<Song>();
-
-            if (treeView1.SelectedNode != null)
-            {
-                if (treeView1.SelectedNode.Text == "Library" || treeView1.SelectedNode.Text == "Playlists")
-                {
-                    SongList = Library.getSongs();
-                }
-                else
-                {
-                    //load playlist
-                }
-            }
-            else
-            {
-                SongList = Library.getSongs();
-            }
+            List<Song> SongList = Playlist.getPlaylistContents(playlistName);
 
             for (int i = 0; i < SongList.Count; i++)
             {
@@ -267,50 +253,5 @@ namespace MediaPlayer
             }
         }
 
-        private void reloadPlaylists()
-        {
-            treeView1.Nodes[1].Nodes.Clear();
-            
-            List<string> playlists = Playlist.getAllPlaylists();
-
-            foreach (string a in playlists)
-            {
-                treeView1.Nodes[1].Nodes.Add(a).ContextMenuStrip = playlistContextMenu;
-            }
-            treeView1.Refresh();
-            treeView1.Nodes[1].Expand();
-        }
-        private void createPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreatePlaylistForm CPF = new CreatePlaylistForm();
-
-            if (CPF.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                reloadPlaylists();
-            }
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            Playlist.deletePlaylist(treeView1.SelectedNode.Text);
-            reloadPlaylists();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            reloadList();
-            reloadPlaylists();
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            reloadList();
-        }
-
-        private void openInANewWindowToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            playlistView a = new playlistView(treeView1.SelectedNode.Text);
-            a.Show();
-        }
     }
 }
