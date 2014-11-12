@@ -28,7 +28,12 @@ namespace MediaPlayer
             catch { }
         }
 
-        private static int getPlaylistID(string name)
+        public static void DeleteFromPlaylist(int playlist, int songID)
+        {
+            SQLManager.getInstance().Execute("DELETE FROM PlaylistSongs WHERE playlistID = " + playlist + " AND songID = " + songID + ";");
+        }
+
+        public static int getPlaylistID(string name)
         {
             int id = 0;
 
@@ -54,10 +59,12 @@ namespace MediaPlayer
             }
             catch { }
         }
+
         public static void deletePlaylist(string name)
         {
             deletePlaylist(getPlaylistID(name));
         }
+
         public static void deletePlaylist(int id)
         {
             try

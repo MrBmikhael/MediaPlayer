@@ -260,9 +260,18 @@ namespace MediaPlayer
         {
             foreach (ListViewItem item in songLibrary.SelectedItems)
             {
-                songLibrary.Items.Remove(item);
-                Library.deleteSong(item.Text);
+                if (playlistSelected)
+                {
+                    Playlist.DeleteFromPlaylist(Playlist.getPlaylistID(treeView1.SelectedNode.Text), Library.getSongID(item.Text));
+                }
+                else
+                {
+                    songLibrary.Items.Remove(item);
+                    Library.deleteSong(item.Text);
+                }
             }
+
+            reloadList();
         }
 
         private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -285,15 +294,29 @@ namespace MediaPlayer
         private void reloadPlaylists()
         {
             treeView1.Nodes[1].Nodes.Clear();
-            
+            playlistContext.DropDownItems.Clear();
+
             List<string> playlists = Playlist.getAllPlaylists();
 
             foreach (string a in playlists)
             {
                 treeView1.Nodes[1].Nodes.Add(a).ContextMenuStrip = playlistContextMenu;
+
+                ToolStripMenuItem item = new ToolStripMenuItem(a);
+                item.Click += item_Click;
+                playlistContext.DropDownItems.Add(item);
+
             }
             treeView1.Refresh();
             treeView1.Nodes[1].Expand();
+        }
+
+        void item_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in songLibrary.SelectedItems)
+            {
+                Playlist.addToPlalist(sender.ToString(), Library.getSongID(item.Text));
+            }
         }
         private void createPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {

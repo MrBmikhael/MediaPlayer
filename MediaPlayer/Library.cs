@@ -75,11 +75,7 @@ namespace MediaPlayer
         {
             SQLManager.getInstance().Insert(f);
         }
-        
-        public static void deleteSong(int id)
-        {
-            delete(id);
-        }
+
         public static void deleteSong(string file)
         {
             int id = 0;

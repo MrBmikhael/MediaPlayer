@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.volumeBar1 = new System.Windows.Forms.TrackBar();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
@@ -56,13 +57,13 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.volumeBar1 = new System.Windows.Forms.TrackBar();
+            this.playlistContext = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // playlistContextMenu
@@ -147,9 +148,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addFileToolStripMenuItem,
-            this.deleteSelectedToolStripMenuItem});
+            this.deleteSelectedToolStripMenuItem,
+            this.playlistContext});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 70);
             // 
             // addFileToolStripMenuItem
             // 
@@ -189,6 +191,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(404, 68);
             this.panel2.TabIndex = 6;
+            // 
+            // volumeBar1
+            // 
+            this.volumeBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.volumeBar1.Location = new System.Drawing.Point(3, 44);
+            this.volumeBar1.Maximum = 100;
+            this.volumeBar1.Name = "volumeBar1";
+            this.volumeBar1.Size = new System.Drawing.Size(398, 45);
+            this.volumeBar1.TabIndex = 6;
+            this.volumeBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.volumeBar1.Value = 50;
+            this.volumeBar1.Scroll += new System.EventHandler(this.volumeBar1_Scroll);
             // 
             // btnNext
             // 
@@ -340,28 +354,22 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "libNode";
-            treeNode3.Text = "Library";
-            treeNode4.Name = "playlistsNode";
-            treeNode4.Text = "Playlists";
+            treeNode1.Name = "libNode";
+            treeNode1.Text = "Library";
+            treeNode2.Name = "playlistsNode";
+            treeNode2.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(177, 465);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
-            // volumeBar1
+            // playlistContext
             // 
-            this.volumeBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.volumeBar1.Location = new System.Drawing.Point(3, 44);
-            this.volumeBar1.Maximum = 100;
-            this.volumeBar1.Name = "volumeBar1";
-            this.volumeBar1.Size = new System.Drawing.Size(398, 70);
-            this.volumeBar1.TabIndex = 6;
-            this.volumeBar1.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.volumeBar1.Value = 50;
-            this.volumeBar1.Scroll += new System.EventHandler(this.volumeBar1_Scroll);
+            this.playlistContext.Name = "playlistContext";
+            this.playlistContext.Size = new System.Drawing.Size(154, 22);
+            this.playlistContext.Text = "Add to Playlist";
             // 
             // Form1
             // 
@@ -383,9 +391,9 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,6 +433,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem openInANewWindowToolStripMenuItem;
         private System.Windows.Forms.TrackBar volumeBar1;
+        private System.Windows.Forms.ToolStripMenuItem playlistContext;
     }
 }
 

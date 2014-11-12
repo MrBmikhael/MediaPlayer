@@ -190,13 +190,9 @@ namespace MediaPlayer
                 e.Effect = DragDropEffects.None;
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            PlayerW.Player.controls.stop();
-        }
-
         public void reloadList()
         {
+            songLibrary.Items.Clear();
             List<Song> SongList = Playlist.getPlaylistContents(playlistName);
 
             for (int i = 0; i < SongList.Count; i++)
@@ -212,16 +208,6 @@ namespace MediaPlayer
 
                 songLibrary.Items.Add(item);
             }
-        }
-
-        private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < songLibrary.SelectedItems.Count; i++)
-            {
-                Library.deleteSong(songLibrary.SelectedItems[i].Text);
-            }
-
-            reloadList();
         }
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -246,9 +232,10 @@ namespace MediaPlayer
         {
             foreach (ListViewItem item in songLibrary.SelectedItems)
             {
-                songLibrary.Items.Remove(item);
-                Library.deleteSong(item.Text);
+                Playlist.DeleteFromPlaylist(Playlist.getPlaylistID(playlistName), Library.getSongID(item.Text));
             }
+
+            reloadList();
         }
 
         private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
