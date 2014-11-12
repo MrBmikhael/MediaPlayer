@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playlistContext = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.volumeBar1 = new System.Windows.Forms.TrackBar();
@@ -57,7 +58,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.playlistContext = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContextMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,16 +69,16 @@
             // playlistContextMenu
             // 
             this.playlistContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.openInANewWindowToolStripMenuItem});
+            this.openInANewWindowToolStripMenuItem,
+            this.toolStripMenuItem2});
             this.playlistContextMenu.Name = "playlistContextMenu";
-            this.playlistContextMenu.Size = new System.Drawing.Size(198, 48);
+            this.playlistContextMenu.Size = new System.Drawing.Size(198, 70);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
-            this.toolStripMenuItem2.Text = "Delete";
+            this.toolStripMenuItem2.Text = "Delete Playlist";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // openInANewWindowToolStripMenuItem
@@ -166,6 +166,12 @@
             this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
             this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem1_Click);
+            // 
+            // playlistContext
+            // 
+            this.playlistContext.Name = "playlistContext";
+            this.playlistContext.Size = new System.Drawing.Size(154, 22);
+            this.playlistContext.Text = "Add to Playlist";
             // 
             // panel1
             // 
@@ -354,22 +360,16 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "libNode";
-            treeNode1.Text = "Library";
-            treeNode2.Name = "playlistsNode";
-            treeNode2.Text = "Playlists";
+            treeNode3.Name = "libNode";
+            treeNode3.Text = "Library";
+            treeNode4.Name = "playlistsNode";
+            treeNode4.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(177, 465);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // playlistContext
-            // 
-            this.playlistContext.Name = "playlistContext";
-            this.playlistContext.Size = new System.Drawing.Size(154, 22);
-            this.playlistContext.Text = "Add to Playlist";
             // 
             // Form1
             // 

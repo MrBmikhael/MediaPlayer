@@ -330,8 +330,11 @@ namespace MediaPlayer
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            Playlist.deletePlaylist(treeView1.SelectedNode.Text);
-            reloadPlaylists();
+            if (MessageBox.Show("Are you sure you want to delete this playlist?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                Playlist.deletePlaylist(treeView1.SelectedNode.Text);
+                reloadPlaylists();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
