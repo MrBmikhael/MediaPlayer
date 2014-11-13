@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using WMPLib;
+using System.Threading;
 
 namespace MediaPlayer
 {
@@ -326,6 +327,8 @@ namespace MediaPlayer
             {
                 reloadPlaylists();
             }
+
+            treeView1.SelectedNode = treeView1.Nodes[1].LastNode;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -352,6 +355,8 @@ namespace MediaPlayer
         {
             playlistView a = new playlistView(treeView1.SelectedNode.Text);
             a.Show();
+
+            treeView1.SelectedNode = treeView1.Nodes[0];
         }
 
         private void songLibrary_ItemDrag(object sender, ItemDragEventArgs e)

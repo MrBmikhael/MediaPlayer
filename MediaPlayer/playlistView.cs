@@ -166,7 +166,10 @@ namespace MediaPlayer
                 foreach (string file in files)
                 {
                     if (File.Exists(file) && file.EndsWith(".mp3"))
+                    {
                         SQLManager.getInstance().Insert(file);
+                        Playlist.addToPlalist(playlistName, Library.getSongID(file));
+                    }
                 }
 
                 reloadList();
