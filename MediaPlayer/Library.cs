@@ -12,6 +12,7 @@ namespace MediaPlayer
     {
         public Library()
         { }
+
         public static List<Song> getSongs()
         {
             List<Song> SongList = new List<Song>();
@@ -87,6 +88,7 @@ namespace MediaPlayer
             reader.Close();
             delete(id);
         }
+
         private static void delete(int id)
         {
             if (SQLManager.getInstance().connection.State == ConnectionState.Closed)

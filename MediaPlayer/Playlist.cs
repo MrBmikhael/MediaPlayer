@@ -11,23 +11,8 @@ namespace MediaPlayer
     class Playlist
     {
         public Playlist()
-        {
-
-        }
-
-        public void addSong(int id)
-        {
-            try
-            {
-                SqlCommand delete = new SqlCommand("DELETE FROM PlaylistSongs WHERE playlistID = " + id.ToString() + ";", SQLManager.getInstance().connection);
-                delete.ExecuteNonQuery();
-
-                delete = new SqlCommand("DELETE FROM Playlists WHERE id = " + id.ToString() + ";", SQLManager.getInstance().connection);
-                delete.ExecuteNonQuery();
-            }
-            catch { }
-        }
-
+        { }
+        
         public static void DeleteFromPlaylist(int playlist, int songID)
         {
             SQLManager.getInstance().Execute("DELETE FROM PlaylistSongs WHERE playlistID = " + playlist + " AND songID = " + songID + ";");

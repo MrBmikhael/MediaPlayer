@@ -21,6 +21,7 @@ namespace MediaPlayer
                 Instance = new SQLManager();
             return Instance;
         }
+
         private SQLManager()
         {
             connectToDB();
