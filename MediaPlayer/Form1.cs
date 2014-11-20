@@ -369,5 +369,45 @@ namespace MediaPlayer
             PlayerW.Player.settings.volume = volumeBar1.Value;
         }
 
+       
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Control && e.KeyCode.ToString() == "I")
+            {
+                volumeBar1.Value += 5;
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "D")
+            {
+                volumeBar1.Value -= 5;
+            }
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+                volumeBar1.Value += 5;
+
+        }
+
+        private void songLibrary_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "I")
+            {
+                if (volumeBar1.Value < 100) { volumeBar1.Value += 5; }
+                
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "D")
+            {
+                if (volumeBar1.Value > 0) { volumeBar1.Value -= 5; }
+                
+            }
+        }
+
+      
+
     }
 }

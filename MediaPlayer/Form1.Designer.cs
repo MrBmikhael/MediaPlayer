@@ -26,10 +26,9 @@
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.songLibrary = new System.Windows.Forms.ListView();
-            this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnArtist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAlbum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,14 +71,7 @@
             this.openInANewWindowToolStripMenuItem,
             this.toolStripMenuItem2});
             this.playlistContextMenu.Name = "playlistContextMenu";
-            this.playlistContextMenu.Size = new System.Drawing.Size(198, 70);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
-            this.toolStripMenuItem2.Text = "Delete Playlist";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.playlistContextMenu.Size = new System.Drawing.Size(198, 48);
             // 
             // openInANewWindowToolStripMenuItem
             // 
@@ -88,6 +80,13 @@
             this.openInANewWindowToolStripMenuItem.Text = "Open in a new Window";
             this.openInANewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInANewWindowToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
+            this.toolStripMenuItem2.Text = "Delete Playlist";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // songLibrary
             // 
             this.songLibrary.AllowDrop = true;
@@ -95,7 +94,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.songLibrary.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnFile,
             this.columnTitle,
             this.columnArtist,
             this.columnAlbum,
@@ -114,10 +112,7 @@
             this.songLibrary.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.songLibrary_ItemDrag);
             this.songLibrary.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.songLibrary.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
-            // 
-            // columnFile
-            // 
-            this.columnFile.Text = "File";
+            this.songLibrary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.songLibrary_KeyDown);
             // 
             // columnTitle
             // 
@@ -375,7 +370,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 586);
+            this.ClientSize = new System.Drawing.Size(794, 587);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
@@ -386,6 +381,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Media Player";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.playlistContextMenu.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -406,7 +403,6 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPrev;
-        private System.Windows.Forms.ColumnHeader columnFile;
         private System.Windows.Forms.ColumnHeader columnTitle;
         private System.Windows.Forms.ColumnHeader columnArtist;
         private System.Windows.Forms.ColumnHeader columnAlbum;
