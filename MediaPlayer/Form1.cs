@@ -396,13 +396,21 @@ namespace MediaPlayer
         {
             if (e.Control && e.KeyCode.ToString() == "I")
             {
-                if (volumeBar1.Value < 100) { volumeBar1.Value += 5; }
+                if (volumeBar1.Value < 95) 
+                {
+                    volumeBar1.Value += 5;
+                    PlayerW.Player.settings.volume = volumeBar1.Value;
+                }
                 
             }
 
             if (e.Control && e.KeyCode.ToString() == "D")
             {
-                if (volumeBar1.Value > 0) { volumeBar1.Value -= 5; }
+                if (volumeBar1.Value > 5) 
+                { 
+                    volumeBar1.Value -= 5;
+                    PlayerW.Player.settings.volume = volumeBar1.Value;
+                }
                 
             }
         }
