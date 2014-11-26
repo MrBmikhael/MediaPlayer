@@ -1,6 +1,6 @@
 ﻿namespace MediaPlayer
 {
-    partial class Form1
+    partial class LibraryView
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -22,9 +22,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryView));
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,7 +35,7 @@
             this.columnYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnGenre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.songLibContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContext = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,12 +57,19 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.songLibViewOpts = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AlbumViewOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.ArtistViewOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.YearViewOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.commentViewOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.genreViewOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistContextMenu.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.songLibContext.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.songLibViewOpts.SuspendLayout();
             this.SuspendLayout();
             // 
             // playlistContextMenu
@@ -100,7 +107,7 @@
             this.columnYear,
             this.columnComment,
             this.columnGenre});
-            this.songLibrary.ContextMenuStrip = this.contextMenuStrip1;
+            this.songLibrary.ContextMenuStrip = this.songLibViewOpts;
             this.songLibrary.FullRowSelect = true;
             this.songLibrary.GridLines = true;
             this.songLibrary.Location = new System.Drawing.Point(195, 27);
@@ -113,11 +120,12 @@
             this.songLibrary.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.songLibrary.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
             this.songLibrary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.songLibrary_KeyDown);
+            this.songLibrary.MouseDown += new System.Windows.Forms.MouseEventHandler(this.songLibrary_MouseDown);
             // 
             // columnTitle
             // 
             this.columnTitle.Text = "Title";
-            this.columnTitle.Width = 217;
+            this.columnTitle.Width = 230;
             // 
             // columnArtist
             // 
@@ -139,14 +147,15 @@
             // 
             this.columnGenre.Text = "Genre";
             // 
-            // contextMenuStrip1
+            // songLibContext
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.songLibContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addFileToolStripMenuItem,
             this.deleteSelectedToolStripMenuItem,
             this.playlistContext});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 70);
+            this.songLibContext.Name = "contextMenuStrip1";
+            this.songLibContext.Size = new System.Drawing.Size(155, 70);
+            this.songLibContext.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.songLibContext_Closed);
             // 
             // addFileToolStripMenuItem
             // 
@@ -355,18 +364,76 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "libNode";
-            treeNode3.Text = "Library";
-            treeNode4.Name = "playlistsNode";
-            treeNode4.Text = "Playlists";
+            treeNode5.Name = "libNode";
+            treeNode5.Text = "Library";
+            treeNode6.Name = "playlistsNode";
+            treeNode6.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode5,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(177, 465);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
-            // Form1
+            // songLibViewOpts
+            // 
+            this.songLibViewOpts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ArtistViewOpt,
+            this.AlbumViewOpt,
+            this.YearViewOpt,
+            this.commentViewOpt,
+            this.genreViewOpt});
+            this.songLibViewOpts.Name = "songLibViewOpts";
+            this.songLibViewOpts.Size = new System.Drawing.Size(153, 136);
+            // 
+            // AlbumViewOpt
+            // 
+            this.AlbumViewOpt.Checked = true;
+            this.AlbumViewOpt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AlbumViewOpt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AlbumViewOpt.Name = "AlbumViewOpt";
+            this.AlbumViewOpt.Size = new System.Drawing.Size(152, 22);
+            this.AlbumViewOpt.Text = "Album";
+            this.AlbumViewOpt.Click += new System.EventHandler(this.AlbumViewOpt_Click);
+            // 
+            // ArtistViewOpt
+            // 
+            this.ArtistViewOpt.Checked = true;
+            this.ArtistViewOpt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ArtistViewOpt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ArtistViewOpt.Name = "ArtistViewOpt";
+            this.ArtistViewOpt.Size = new System.Drawing.Size(152, 22);
+            this.ArtistViewOpt.Text = "Artist";
+            this.ArtistViewOpt.Click += new System.EventHandler(this.ArtistViewOpt_Click);
+            // 
+            // YearViewOpt
+            // 
+            this.YearViewOpt.Checked = true;
+            this.YearViewOpt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.YearViewOpt.Name = "YearViewOpt";
+            this.YearViewOpt.Size = new System.Drawing.Size(152, 22);
+            this.YearViewOpt.Text = "Year";
+            this.YearViewOpt.Click += new System.EventHandler(this.YearViewOpt_Click);
+            // 
+            // commentViewOpt
+            // 
+            this.commentViewOpt.Checked = true;
+            this.commentViewOpt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.commentViewOpt.Name = "commentViewOpt";
+            this.commentViewOpt.Size = new System.Drawing.Size(152, 22);
+            this.commentViewOpt.Text = "Comment";
+            this.commentViewOpt.Click += new System.EventHandler(this.commentViewOpt_Click);
+            // 
+            // genreViewOpt
+            // 
+            this.genreViewOpt.Checked = true;
+            this.genreViewOpt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.genreViewOpt.Name = "genreViewOpt";
+            this.genreViewOpt.Size = new System.Drawing.Size(152, 22);
+            this.genreViewOpt.Text = "Genre";
+            this.genreViewOpt.Click += new System.EventHandler(this.genreViewOpt_Click);
+            // 
+            // LibraryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -377,20 +444,19 @@
             this.Controls.Add(this.songLibrary);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(810, 625);
-            this.Name = "Form1";
+            this.Name = "LibraryView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Media Player";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.playlistContextMenu.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.songLibContext.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.songLibViewOpts.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,7 +477,7 @@
         private System.Windows.Forms.ColumnHeader columnGenre;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip songLibContext;
         private System.Windows.Forms.ToolStripMenuItem addFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -430,6 +496,12 @@
         private System.Windows.Forms.ToolStripMenuItem openInANewWindowToolStripMenuItem;
         private System.Windows.Forms.TrackBar volumeBar1;
         private System.Windows.Forms.ToolStripMenuItem playlistContext;
+        private System.Windows.Forms.ContextMenuStrip songLibViewOpts;
+        private System.Windows.Forms.ToolStripMenuItem ArtistViewOpt;
+        private System.Windows.Forms.ToolStripMenuItem AlbumViewOpt;
+        private System.Windows.Forms.ToolStripMenuItem YearViewOpt;
+        private System.Windows.Forms.ToolStripMenuItem commentViewOpt;
+        private System.Windows.Forms.ToolStripMenuItem genreViewOpt;
     }
 }
 

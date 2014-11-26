@@ -201,8 +201,7 @@ namespace MediaPlayer
             for (int i = 0; i < SongList.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = SongList[i].File;
-                item.SubItems.Add(SongList[i].Title);
+                item.Text = SongList[i].Title;
                 item.SubItems.Add(SongList[i].Artist);
                 item.SubItems.Add(SongList[i].Album);
                 item.SubItems.Add(SongList[i].Year.ToString());
@@ -263,6 +262,37 @@ namespace MediaPlayer
         private void volumeBar1_Scroll(object sender, EventArgs e)
         {
             PlayerW.Player.settings.volume = volumeBar1.Value;
+        }
+
+        private void songLibrary_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "I")
+            {
+                if (volumeBar1.Value < 100)
+                {
+                    volumeBar1.Value += 5;
+                    PlayerW.Player.settings.volume = volumeBar1.Value;
+                }
+
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "D")
+            {
+                if (volumeBar1.Value > 0)
+                {
+                    volumeBar1.Value -= 5;
+                    PlayerW.Player.settings.volume = volumeBar1.Value;
+                }
+
+            }
+        }
+
+        private void songLibrary_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+
+            }
         }
 
     }

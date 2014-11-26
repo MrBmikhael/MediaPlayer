@@ -24,7 +24,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(playlistView));
             this.songLibrary = new System.Windows.Forms.ListView();
-            this.columnFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnArtist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAlbum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,7 +64,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.songLibrary.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnFile,
             this.columnTitle,
             this.columnArtist,
             this.columnAlbum,
@@ -83,10 +81,8 @@
             this.songLibrary.View = System.Windows.Forms.View.Details;
             this.songLibrary.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.songLibrary.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
-            // 
-            // columnFile
-            // 
-            this.columnFile.Text = "File";
+            this.songLibrary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.songLibrary_KeyDown);
+            this.songLibrary.MouseClick += new System.Windows.Forms.MouseEventHandler(this.songLibrary_MouseClick);
             // 
             // columnTitle
             // 
@@ -119,7 +115,7 @@
             this.addFileToolStripMenuItem,
             this.deleteSelectedToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 48);
             // 
             // addFileToolStripMenuItem
             // 
@@ -347,7 +343,6 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPrev;
-        private System.Windows.Forms.ColumnHeader columnFile;
         private System.Windows.Forms.ColumnHeader columnTitle;
         private System.Windows.Forms.ColumnHeader columnArtist;
         private System.Windows.Forms.ColumnHeader columnAlbum;

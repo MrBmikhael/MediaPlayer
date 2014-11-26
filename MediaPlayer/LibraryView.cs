@@ -13,15 +13,23 @@ using System.Threading;
 
 namespace MediaPlayer
 {
-    public partial class Form1 : Form
+    public partial class LibraryView : Form
     {
         public PlayerWrapper PlayerW;
         public int currentlyPlaying = 0;
         public bool playlistSelected = false;
-        public Form1()
+        public LibraryView()
         {
             InitializeComponent();
             PlayerW = PlayerWrapper.getInstance();
+
+            songLibrary.Columns[0].Tag = "Title";
+            songLibrary.Columns[1].Tag = "Artist";
+            songLibrary.Columns[2].Tag = "Album";
+            songLibrary.Columns[3].Tag = "Year";
+            songLibrary.Columns[4].Tag = "Comment";
+            songLibrary.Columns[5].Tag = "Genre";
+
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -217,8 +225,7 @@ namespace MediaPlayer
             for (int i = 0; i < SongList.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = SongList[i].File;
-                item.SubItems.Add(SongList[i].Title);
+                item.Text = SongList[i].Title;
                 item.SubItems.Add(SongList[i].Artist);
                 item.SubItems.Add(SongList[i].Album);
                 item.SubItems.Add(SongList[i].Year.ToString());
@@ -369,34 +376,11 @@ namespace MediaPlayer
             PlayerW.Player.settings.volume = volumeBar1.Value;
         }
 
-       
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.Control && e.KeyCode.ToString() == "I")
-            {
-                volumeBar1.Value += 5;
-            }
-
-            if (e.Control && e.KeyCode.ToString() == "D")
-            {
-                volumeBar1.Value -= 5;
-            }
-        }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-                volumeBar1.Value += 5;
-
-        }
-
         private void songLibrary_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode.ToString() == "I")
             {
-                if (volumeBar1.Value < 95) 
+                if (volumeBar1.Value < 100) 
                 {
                     volumeBar1.Value += 5;
                     PlayerW.Player.settings.volume = volumeBar1.Value;
@@ -406,7 +390,7 @@ namespace MediaPlayer
 
             if (e.Control && e.KeyCode.ToString() == "D")
             {
-                if (volumeBar1.Value > 5) 
+                if (volumeBar1.Value > 0) 
                 { 
                     volumeBar1.Value -= 5;
                     PlayerW.Player.settings.volume = volumeBar1.Value;
@@ -415,7 +399,129 @@ namespace MediaPlayer
             }
         }
 
-      
+        private void songLibrary_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                songLibrary.ContextMenuStrip = songLibContext;
+            }
+        }
+
+        private void songLibContext_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            songLibrary.ContextMenuStrip = songLibViewOpts;
+        }
+
+        private void ArtistViewOpt_Click(object sender, EventArgs e)
+        {
+            ArtistViewOpt.Checked = !ArtistViewOpt.Checked;
+
+            if (ArtistViewOpt.Checked)
+            {
+                //songLibrary.Columns.Insert(1, "Artist");
+                //songLibrary.Columns[1].Tag = "Artist";
+
+                songLibrary.Columns[1].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+            else
+            {
+                songLibrary.Columns[1].Width = 0;
+                //for (int i = 0; i < songLibrary.Columns.Count; i++)
+                //{
+                //    if (songLibrary.Columns[i].Tag.Equals("Artist"))
+                //    {
+                //        songLibrary.Columns.RemoveAt(i);
+                //    }
+                //}
+            }
+        }
+
+        private void AlbumViewOpt_Click(object sender, EventArgs e)
+        {
+            AlbumViewOpt.Checked = !AlbumViewOpt.Checked;
+
+            if (AlbumViewOpt.Checked)
+            {
+                songLibrary.Columns.Insert(2, "Album");
+                songLibrary.Columns[2].Tag = "Album";
+            }
+            else
+            {
+                for (int i = 0; i < songLibrary.Columns.Count; i++)
+                {
+                    if (songLibrary.Columns[i].Tag.Equals("Album"))
+                    {
+                        songLibrary.Columns.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        private void YearViewOpt_Click(object sender, EventArgs e)
+        {
+            YearViewOpt.Checked = !YearViewOpt.Checked;
+
+            if (YearViewOpt.Checked)
+            {
+                songLibrary.Columns.Insert(3, "Year");
+                songLibrary.Columns[3].Tag = "Year";
+            }
+            else
+            {
+                for (int i = 0; i < songLibrary.Columns.Count; i++)
+                {
+                    if (songLibrary.Columns[i].Tag.Equals("Year"))
+                    {
+                        songLibrary.Columns.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        private void commentViewOpt_Click(object sender, EventArgs e)
+        {
+            commentViewOpt.Checked = !commentViewOpt.Checked;
+
+            if (commentViewOpt.Checked)
+            {
+                int c = songLibrary.Columns.Count;
+                songLibrary.Columns.Insert(c, "Comment");
+                songLibrary.Columns[c].Tag = "Comment";
+            }
+            else
+            {
+                for (int i = 0; i < songLibrary.Columns.Count; i++)
+                {
+                    if (songLibrary.Columns[i].Tag.Equals("Comment"))
+                    {
+                        songLibrary.Columns.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        private void genreViewOpt_Click(object sender, EventArgs e)
+        {
+            genreViewOpt.Checked = !genreViewOpt.Checked;
+
+            if (genreViewOpt.Checked)
+            {
+                songLibrary.Columns.Insert(5, "Genre");
+                songLibrary.Columns[5].Tag = "Genre";
+            }
+            else
+            {
+                for (int i = 0; i < songLibrary.Columns.Count; i++)
+                {
+                    if (songLibrary.Columns[i].Tag.Equals("Genre"))
+                    {
+                        songLibrary.Columns.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+
 
     }
 }
