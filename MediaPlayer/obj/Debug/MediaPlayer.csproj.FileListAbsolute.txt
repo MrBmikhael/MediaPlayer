@@ -35,7 +35,6 @@ C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Debug\AxInterop.W
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csprojResolveAssemblyReference.cache
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.CreatePlaylistForm.resources
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.playlistView.resources
-C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Form1.resources
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Properties.Resources.resources
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.GenerateResource.Cache
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.playlistView.resources
@@ -79,3 +78,4 @@ C:\Users\Forest\Documents\GitHub\MediaPlayer\MediaPlayer\MediaPlayer\obj\Debug\M
 C:\Users\Forest\Documents\GitHub\MediaPlayer\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Form1.resources
 C:\Users\Forest\Documents\GitHub\MediaPlayer\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Properties.Resources.resources
 C:\Users\Forest\Documents\GitHub\MediaPlayer\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.GenerateResource.Cache
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.LibraryView.resources
