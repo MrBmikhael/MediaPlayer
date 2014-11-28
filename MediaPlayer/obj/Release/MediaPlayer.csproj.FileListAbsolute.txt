@@ -19,3 +19,6 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csprojResolveAssemblyReference.cache
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.CreatePlaylistForm.resources
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.playlistView.resources
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\Interop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\AxInterop.WMPLib.dll
+C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.ResolveComReference.cache
