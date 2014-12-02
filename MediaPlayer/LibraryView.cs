@@ -18,6 +18,8 @@ namespace MediaPlayer
         public PlayerWrapper PlayerW;
         public int currentlyPlaying = 0;
         public bool playlistSelected = false;
+        public bool Shuffle = false;
+        public bool Repeat = false;
         public LibraryView()
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace MediaPlayer
             if (i == 0)
             {
                 PlayerW.Player.controls.stop();
-                PlayerW.Player.URL = songLibrary.Items[songLibrary.Items.Count - 1].Text;
+                PlayerW.Player.URL = songLibrary.Items[songLibrary.Items.Count - 1].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = songLibrary.Items.Count - 1;
             }
@@ -47,7 +49,7 @@ namespace MediaPlayer
             {
                 i--;
                 PlayerW.Player.controls.stop();
-                PlayerW.Player.URL = songLibrary.Items[i].Text;
+                PlayerW.Player.URL = songLibrary.Items[i].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = i;
             }
@@ -74,12 +76,12 @@ namespace MediaPlayer
 
             if (songLibrary.SelectedItems.Count > 0)
             {
-                PlayerW.Player.URL = songLibrary.SelectedItems[0].Text;
+                PlayerW.Player.URL = songLibrary.SelectedItems[0].Tag.ToString();
                 currentlyPlaying = songLibrary.Items.IndexOf(songLibrary.SelectedItems[0]);
             }
             else if (songLibrary.Items.Count > 0)
             {
-                PlayerW.Player.URL = songLibrary.Items[0].Text;
+                PlayerW.Player.URL = songLibrary.Items[0].Tag.ToString();
                 currentlyPlaying = 0;
             }
 
@@ -138,7 +140,7 @@ namespace MediaPlayer
             if (i == songLibrary.Items.Count - 1)
             {
                 PlayerW.Player.controls.stop();
-                PlayerW.Player.URL = songLibrary.Items[0].Text;
+                PlayerW.Player.URL = songLibrary.Items[0].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = 0;
             }
@@ -146,7 +148,7 @@ namespace MediaPlayer
             {
                 i++;
                 PlayerW.Player.controls.stop();
-                PlayerW.Player.URL = songLibrary.Items[i].Text;
+                PlayerW.Player.URL = songLibrary.Items[i].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = i;
             }
@@ -211,6 +213,7 @@ namespace MediaPlayer
             for (int i = 0; i < SongList.Count; i++)
             {
                 ListViewItem item = new ListViewItem();
+                item.Tag = SongList[i].File;
                 item.Text = SongList[i].Title;
                 item.SubItems.Add(SongList[i].Artist);
                 item.SubItems.Add(SongList[i].Album);
@@ -226,7 +229,7 @@ namespace MediaPlayer
         {
             for (int i = 0; i < songLibrary.SelectedItems.Count; i++)
             {
-                Library.deleteSong(songLibrary.SelectedItems[i].Text);
+                Library.deleteSong(songLibrary.SelectedItems[i].Tag.ToString());
             }
 
             reloadList();
@@ -256,12 +259,12 @@ namespace MediaPlayer
             {
                 if (playlistSelected)
                 {
-                    Playlist.DeleteFromPlaylist(Playlist.getPlaylistID(treeView1.SelectedNode.Text), Library.getSongID(item.Text));
+                    Playlist.DeleteFromPlaylist(Playlist.getPlaylistID(treeView1.SelectedNode.Text), Library.getSongID(item.Tag.ToString()));
                 }
                 else
                 {
                     songLibrary.Items.Remove(item);
-                    Library.deleteSong(item.Text);
+                    Library.deleteSong(item.Tag.ToString());
                 }
             }
 
@@ -309,7 +312,7 @@ namespace MediaPlayer
         {
             foreach (ListViewItem item in songLibrary.SelectedItems)
             {
-                Playlist.addToPlalist(sender.ToString(), Library.getSongID(item.Text));
+                Playlist.addToPlalist(sender.ToString(), Library.getSongID(item.Tag.ToString()));
             }
         }
         private void createPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -536,12 +539,12 @@ namespace MediaPlayer
 
         private void shuffleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Shuffle = shuffleToolStripMenuItem.Checked;
         }
 
         private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Repeat = repeatToolStripMenuItem.Checked;
         }
 
         private void LibraryView_FormClosing(object sender, FormClosingEventArgs e)

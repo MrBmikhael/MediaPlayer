@@ -125,6 +125,7 @@
             this.songLibrary.Location = new System.Drawing.Point(195, 27);
             this.songLibrary.Name = "songLibrary";
             this.songLibrary.Size = new System.Drawing.Size(587, 465);
+            this.songLibrary.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
             this.songLibrary.View = System.Windows.Forms.View.Details;

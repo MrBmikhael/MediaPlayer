@@ -93,6 +93,11 @@ namespace MediaPlayer
             return true;
         }
         
+        public void addRecent(int id)
+        {
+            Execute("INSERT INTO Recent (songID) VALUES (" + id + ");");
+        }
+
         public bool Insert(string file)
         {
             if (connection.State == ConnectionState.Closed)
