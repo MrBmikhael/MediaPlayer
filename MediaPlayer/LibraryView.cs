@@ -184,14 +184,7 @@ namespace MediaPlayer
             else
                 e.Effect = DragDropEffects.None;
         }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            updateSettings();
-            PlayerW.Player.controls.stop();
-            SQLManager.getInstance().CloseDB();
-        }
-
+        
         public void reloadList()
         {
             songLibrary.Items.Clear();
@@ -361,6 +354,7 @@ namespace MediaPlayer
                 else
                 {
                     songLibrary.Columns[i+1].Width = 0;
+                    songLibViewOpts.Items[i].PerformClick();
                 }
             }
         }
@@ -395,6 +389,11 @@ namespace MediaPlayer
 
         private void songLibrary_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyValue == 32)
+            {
+                btnPlay.PerformClick();
+            }
+
             if (e.Control && e.KeyCode.ToString() == "I")
             {
                 if (volumeBar1.Value < 100) 
@@ -543,6 +542,13 @@ namespace MediaPlayer
         private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LibraryView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            updateSettings();
+            PlayerW.Player.controls.stop();
+            SQLManager.getInstance().CloseDB();
         }
 
 

@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryView));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -527,13 +527,13 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            treeNode5.Name = "libNode";
-            treeNode5.Text = "Library";
-            treeNode6.Name = "playlistsNode";
-            treeNode6.Text = "Playlists";
+            treeNode1.Name = "libNode";
+            treeNode1.Text = "Library";
+            treeNode2.Name = "playlistsNode";
+            treeNode2.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(177, 465);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -552,6 +552,7 @@
             this.Name = "LibraryView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Media Player";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LibraryView_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.playlistContextMenu.ResumeLayout(false);
             this.songLibViewOpts.ResumeLayout(false);

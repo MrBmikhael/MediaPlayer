@@ -52,8 +52,7 @@ namespace MediaPlayer
             q += "', Comment='" + newSet[3];
             q += "', Genre='" + newSet[4] + "' WHERE Id = '1';";
 
-            SqlCommand SettingsCommand = new SqlCommand(q, connection);
-            SettingsCommand.ExecuteNonQuery();
+            Execute(q);
         }
 
         public int[] loadSettings()
