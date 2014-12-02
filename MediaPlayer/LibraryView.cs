@@ -22,16 +22,8 @@ namespace MediaPlayer
         {
             InitializeComponent();
             PlayerW = PlayerWrapper.getInstance();
-
-            songLibrary.Columns[0].Tag = "Title";
-            songLibrary.Columns[1].Tag = "Artist";
-            songLibrary.Columns[2].Tag = "Album";
-            songLibrary.Columns[3].Tag = "Year";
-            songLibrary.Columns[4].Tag = "Comment";
-            songLibrary.Columns[5].Tag = "Genre";
-
         }
-
+        
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (songLibrary.Items.Count == 0)
@@ -195,6 +187,7 @@ namespace MediaPlayer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            updateSettings();
             PlayerW.Player.controls.stop();
             SQLManager.getInstance().CloseDB();
         }
@@ -351,6 +344,30 @@ namespace MediaPlayer
         {
             reloadList();
             reloadPlaylists();
+            loadSettings();
+            loadRecent();
+        }
+
+        private void loadSettings()
+        {
+            int[] sett = SQLManager.getInstance().loadSettings();
+            
+            for (int i = 0; i < sett.Length; i++)
+            {
+                if (sett[i] == 0)
+                {
+                    songLibrary.Columns[i+1].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+                }
+                else
+                {
+                    songLibrary.Columns[i+1].Width = 0;
+                }
+            }
+        }
+
+        private void loadRecent()
+        {
+
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -412,27 +429,36 @@ namespace MediaPlayer
             songLibrary.ContextMenuStrip = songLibViewOpts;
         }
 
+        private void updateSettings()
+        {
+            int[] sett = new int[5];
+            
+            for(int i = 1; i < 6; i++)
+            {
+                if(songLibrary.Columns[i].Width != 0)
+                {
+                    sett[i - 1] = 0;
+                }
+                else
+                {
+                    sett[i - 1] = 1;
+                }
+            }
+
+            SQLManager.getInstance().UpdateSettings(sett);
+        }
+
         private void ArtistViewOpt_Click(object sender, EventArgs e)
         {
             ArtistViewOpt.Checked = !ArtistViewOpt.Checked;
 
             if (ArtistViewOpt.Checked)
             {
-                //songLibrary.Columns.Insert(1, "Artist");
-                //songLibrary.Columns[1].Tag = "Artist";
-
                 songLibrary.Columns[1].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             else
             {
                 songLibrary.Columns[1].Width = 0;
-                //for (int i = 0; i < songLibrary.Columns.Count; i++)
-                //{
-                //    if (songLibrary.Columns[i].Tag.Equals("Artist"))
-                //    {
-                //        songLibrary.Columns.RemoveAt(i);
-                //    }
-                //}
             }
         }
 
@@ -442,18 +468,11 @@ namespace MediaPlayer
 
             if (AlbumViewOpt.Checked)
             {
-                songLibrary.Columns.Insert(2, "Album");
-                songLibrary.Columns[2].Tag = "Album";
+                songLibrary.Columns[2].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             else
             {
-                for (int i = 0; i < songLibrary.Columns.Count; i++)
-                {
-                    if (songLibrary.Columns[i].Tag.Equals("Album"))
-                    {
-                        songLibrary.Columns.RemoveAt(i);
-                    }
-                }
+                songLibrary.Columns[2].Width = 0;
             }
         }
 
@@ -463,18 +482,11 @@ namespace MediaPlayer
 
             if (YearViewOpt.Checked)
             {
-                songLibrary.Columns.Insert(3, "Year");
-                songLibrary.Columns[3].Tag = "Year";
+                songLibrary.Columns[3].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             else
             {
-                for (int i = 0; i < songLibrary.Columns.Count; i++)
-                {
-                    if (songLibrary.Columns[i].Tag.Equals("Year"))
-                    {
-                        songLibrary.Columns.RemoveAt(i);
-                    }
-                }
+                songLibrary.Columns[3].Width = 0;
             }
         }
 
@@ -484,19 +496,11 @@ namespace MediaPlayer
 
             if (commentViewOpt.Checked)
             {
-                int c = songLibrary.Columns.Count;
-                songLibrary.Columns.Insert(c, "Comment");
-                songLibrary.Columns[c].Tag = "Comment";
+                songLibrary.Columns[4].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             else
             {
-                for (int i = 0; i < songLibrary.Columns.Count; i++)
-                {
-                    if (songLibrary.Columns[i].Tag.Equals("Comment"))
-                    {
-                        songLibrary.Columns.RemoveAt(i);
-                    }
-                }
+                songLibrary.Columns[4].Width = 0;
             }
         }
 
@@ -506,19 +510,39 @@ namespace MediaPlayer
 
             if (genreViewOpt.Checked)
             {
-                songLibrary.Columns.Insert(5, "Genre");
-                songLibrary.Columns[5].Tag = "Genre";
+                songLibrary.Columns[5].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             else
             {
-                for (int i = 0; i < songLibrary.Columns.Count; i++)
-                {
-                    if (songLibrary.Columns[i].Tag.Equals("Genre"))
-                    {
-                        songLibrary.Columns.RemoveAt(i);
-                    }
-                }
+                songLibrary.Columns[5].Width = 0;
             }
+        }
+
+        private void goToCurrentSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void increaseVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (volumeBar1.Value < 100)
+                volumeBar1.Value += 5;
+        }
+
+        private void decreaseVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (volumeBar1.Value > 0)
+                volumeBar1.Value -= 5;
+        }
+
+        private void shuffleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 

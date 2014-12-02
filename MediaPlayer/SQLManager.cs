@@ -43,6 +43,40 @@ namespace MediaPlayer
             return true;
         }
 
+        public void UpdateSettings(int[] newSet)
+        {
+            string q = "UPDATE Settings SET ";
+            q += "Artist='" + newSet[0];
+            q += "', Album='" + newSet[1];
+            q += "', Year='" + newSet[2];
+            q += "', Comment='" + newSet[3];
+            q += "', Genre='" + newSet[4] + "' WHERE Id = '1';";
+
+            SqlCommand SettingsCommand = new SqlCommand(q, connection);
+            SettingsCommand.ExecuteNonQuery();
+        }
+
+        public int[] loadSettings()
+        {
+            int[] sett = new int[5];
+
+            SqlCommand SettingsCommand = new SqlCommand("SELECT * FROM Settings;", connection);
+
+            SqlDataReader reader = SettingsCommand.ExecuteReader();
+
+            reader.Read();
+
+            sett[0] = (reader["Artist"].ToString() == "False") ? 0 : 1;
+            sett[1] = (reader["Album"].ToString() == "False") ? 0 : 1;
+            sett[2] = (reader["Year"].ToString() == "False") ? 0 : 1;
+            sett[3] = (reader["Comment"].ToString() == "False") ? 0 : 1;
+            sett[4] = (reader["Genre"].ToString() == "False") ? 0 : 1;
+
+            reader.Close();
+
+            return sett;
+        }
+
         public void Execute(string q)
         {
             if (connection.State == ConnectionState.Closed)

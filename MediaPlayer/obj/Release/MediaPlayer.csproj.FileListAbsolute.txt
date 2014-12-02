@@ -1,7 +1,6 @@
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\Interop.WMPLib.dll
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\AxInterop.WMPLib.dll
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.ResolveComReference.cache
-C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.Form1.resources
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.Properties.Resources.resources
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.GenerateResource.Cache
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Database.mdf
@@ -22,3 +21,4 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\Interop.WMPLib.dll
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\AxInterop.WMPLib.dll
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.ResolveComReference.cache
+C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.LibraryView.resources
