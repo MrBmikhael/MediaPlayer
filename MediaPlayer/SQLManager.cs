@@ -27,7 +27,7 @@ namespace MediaPlayer
             connectToDB();
         }
 
-        private bool connectToDB()
+        public bool connectToDB()
         {
             string dbfile = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName + "\\Database.mdf";
 
@@ -114,7 +114,7 @@ namespace MediaPlayer
 
             for (int i = 0; i < sList.Count; i++ )
             {
-                if (sList[i].File == file)
+                if (sList[i].File.Replace("\'", "@SQ") == file)
                     Exist = true;
             }
 
@@ -123,12 +123,12 @@ namespace MediaPlayer
 
                 if (!Exist)
                 {
-                    string q = "INSERT INTO Songs (filePath, title, artist, album, year, comment, genre) VALUES ('" + file;
-                    q += "', '" + tagReader.Title.ToString();
-                    q += "', '" + tagReader.Artist.ToString();
-                    q += "', '" + tagReader.Album.ToString();
+                    string q = "INSERT INTO Songs (filePath, title, artist, album, year, comment, genre) VALUES ('" + file.Replace("\'", "@SQ");
+                    q += "', '" + tagReader.Title.ToString().Replace("\'", "@SQ");
+                    q += "', '" + tagReader.Artist.ToString().Replace("\'", "@SQ");
+                    q += "', '" + tagReader.Album.ToString().Replace("\'", "@SQ");
                     q += "', '" + tagReader.Year.ToString();
-                    q += "', '" + tagReader.Comments.ToString();
+                    q += "', '" + tagReader.Comments.ToString().Replace("\'", "@SQ");
                     q += "', '" + tagReader.Genre.ToString() + "');";
 
                     SqlCommand insertCommand = new SqlCommand(q, connection);

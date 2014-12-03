@@ -66,8 +66,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UltraID3Lib">
-      <HintPath>..\..\..\..\Downloads\UltraID3Lib0968\UltraID3Lib.dll</HintPath>
+    <Reference Include="UltraID3Lib, Version=0.9.6.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\UltraID3Lib0968\UltraID3Lib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -77,13 +78,8 @@
     <Compile Include="CreatePlaylistForm.Designer.cs">
       <DependentUpon>CreatePlaylistForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewSort.cs" />
     <Compile Include="PlayerWrapper.cs" />
-    <Compile Include="playlistView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="playlistView.Designer.cs">
-      <DependentUpon>playlistView.cs</DependentUpon>
-    </Compile>
     <Compile Include="LibraryView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +99,6 @@
     <Compile Include="SQLManager.cs" />
     <EmbeddedResource Include="CreatePlaylistForm.resx">
       <DependentUpon>CreatePlaylistForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="playlistView.resx">
-      <DependentUpon>playlistView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LibraryView.resx">
       <DependentUpon>LibraryView.cs</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,12 @@ namespace MediaPlayer
             while (reader.Read())
             {
                 Song a = new Song();
-                a.File = reader["filePath"].ToString();
-                a.Title = reader["title"].ToString();
-                a.Artist = reader["artist"].ToString();
-                a.Album = reader["album"].ToString();
+                a.File = reader["filePath"].ToString().Replace("@SQ", "\'");
+                a.Title = reader["title"].ToString().Replace("@SQ", "\'");
+                a.Artist = reader["artist"].ToString().Replace("@SQ", "\'");
+                a.Album = reader["album"].ToString().Replace("@SQ", "\'");
                 a.Year = Convert.ToInt32(reader["year"].ToString());
-                a.Comment = reader["comment"].ToString();
+                a.Comment = reader["comment"].ToString().Replace("@SQ", "\'");
                 a.Genre = reader["genre"].ToString();
 
                 SongList.Add(a);
@@ -42,10 +43,10 @@ namespace MediaPlayer
         public static int getSongID(string path)
         {
             int SongID = 0;
-            SqlCommand command = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + path + "';", SQLManager.getInstance().connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + path.Replace("\'", "@SQ") + "';", SQLManager.getInstance().connection);
             SqlDataReader reader = command.ExecuteReader();
             reader.Read();
-
+            
             SongID = Convert.ToInt32(reader["SongID"].ToString());
 
             reader.Close();
@@ -60,12 +61,12 @@ namespace MediaPlayer
             reader.Read();
 
             Song a = new Song();
-            a.File = reader["filePath"].ToString();
-            a.Title = reader["title"].ToString();
-            a.Artist = reader["artist"].ToString();
-            a.Album = reader["album"].ToString();
+            a.File = reader["filePath"].ToString().Replace("@SQ", "\'");
+            a.Title = reader["title"].ToString().Replace("@SQ", "\'");
+            a.Artist = reader["artist"].ToString().Replace("@SQ", "\'");
+            a.Album = reader["album"].ToString().Replace("@SQ", "\'");
             a.Year = Convert.ToInt32(reader["year"].ToString());
-            a.Comment = reader["comment"].ToString();
+            a.Comment = reader["comment"].ToString().Replace("@SQ", "\'");
             a.Genre = reader["genre"].ToString();
 
             reader.Close();
@@ -81,7 +82,7 @@ namespace MediaPlayer
         {
             int id = 0;
 
-            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + file + "';", SQLManager.getInstance().connection);
+            SqlCommand select = new SqlCommand("SELECT * FROM Songs WHERE filePath = '" + file.Replace("\'","@SQ") + "';", SQLManager.getInstance().connection);
             SqlDataReader reader = select.ExecuteReader();
             reader.Read();
             id = Convert.ToInt32(reader["SongID"].ToString());

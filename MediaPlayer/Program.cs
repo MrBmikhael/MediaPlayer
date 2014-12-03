@@ -16,7 +16,7 @@ namespace MediaPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LibraryView());
+            Application.Run(new LibraryView(false));
         }
     }
 }

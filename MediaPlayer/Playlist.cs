@@ -10,6 +10,8 @@ namespace MediaPlayer
 {
     class Playlist
     {
+        public static string playlistName = "";
+
         public Playlist()
         { }
         
