@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryView));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +76,10 @@
             this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.duration1 = new System.Windows.Forms.Label();
+            this.duration2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.playlistContextMenu.SuspendLayout();
             this.songLibViewOpts.SuspendLayout();
             this.songLibContext.SuspendLayout();
@@ -84,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // playlistContextMenu
@@ -128,7 +133,7 @@
             this.songLibrary.LabelWrap = false;
             this.songLibrary.Location = new System.Drawing.Point(183, 0);
             this.songLibrary.Name = "songLibrary";
-            this.songLibrary.Size = new System.Drawing.Size(615, 532);
+            this.songLibrary.Size = new System.Drawing.Size(615, 505);
             this.songLibrary.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
@@ -257,10 +262,14 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.duration2);
+            this.panel1.Controls.Add(this.duration1);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 567);
+            this.panel1.Controls.Add(this.trackBar1);
+            this.panel1.Location = new System.Drawing.Point(12, 545);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(805, 76);
+            this.panel1.Size = new System.Drawing.Size(805, 98);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -273,7 +282,7 @@
             this.panel2.Controls.Add(this.btnStop);
             this.panel2.Controls.Add(this.btnPause);
             this.panel2.Controls.Add(this.btnPlay);
-            this.panel2.Location = new System.Drawing.Point(183, 5);
+            this.panel2.Location = new System.Drawing.Point(183, 27);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(439, 68);
             this.panel2.TabIndex = 6;
@@ -534,14 +543,14 @@
             this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(0, -2);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "libNode";
-            treeNode1.Text = "Library";
-            treeNode2.Name = "playlistsNode";
-            treeNode2.Text = "Playlists";
+            treeNode7.Name = "libNode";
+            treeNode7.Text = "Library";
+            treeNode8.Name = "playlistsNode";
+            treeNode8.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(177, 534);
+            treeNode7,
+            treeNode8});
+            this.treeView1.Size = new System.Drawing.Size(177, 507);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -555,8 +564,51 @@
             this.mainPanel.Controls.Add(this.songLibrary);
             this.mainPanel.Location = new System.Drawing.Point(12, 27);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(805, 534);
+            this.mainPanel.Size = new System.Drawing.Size(805, 512);
             this.mainPanel.TabIndex = 4;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar1.Enabled = false;
+            this.trackBar1.Location = new System.Drawing.Point(2, 3);
+            this.trackBar1.Maximum = 1000;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(798, 45);
+            this.trackBar1.TabIndex = 7;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // duration1
+            // 
+            this.duration1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.duration1.AutoSize = true;
+            this.duration1.Location = new System.Drawing.Point(3, 27);
+            this.duration1.Name = "duration1";
+            this.duration1.Size = new System.Drawing.Size(43, 13);
+            this.duration1.TabIndex = 8;
+            this.duration1.Text = "0:00:00";
+            // 
+            // duration2
+            // 
+            this.duration2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.duration2.AutoSize = true;
+            this.duration2.Location = new System.Drawing.Point(759, 27);
+            this.duration2.Name = "duration2";
+            this.duration2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.duration2.Size = new System.Drawing.Size(43, 13);
+            this.duration2.TabIndex = 9;
+            this.duration2.Text = "0:00:00";
+            this.duration2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(69, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "label1";
             // 
             // LibraryView
             // 
@@ -577,12 +629,14 @@
             this.songLibViewOpts.ResumeLayout(false);
             this.songLibContext.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.mainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -646,6 +700,10 @@
         private System.Windows.Forms.ToolStripMenuItem shuffleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repeatToolStripMenuItem;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label duration2;
+        private System.Windows.Forms.Label duration1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

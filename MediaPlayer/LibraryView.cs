@@ -16,6 +16,7 @@ namespace MediaPlayer
 {
     public partial class LibraryView : Form
     {
+        public System.Windows.Forms.Timer MarkerTimer = new System.Windows.Forms.Timer();
         public Random randGenerator;
         public PlayerWrapper PlayerW;
         public int currentlyPlaying = 0;
@@ -31,6 +32,9 @@ namespace MediaPlayer
             PlayerW = PlayerWrapper.getInstance();
             randGenerator = new Random();
 
+            MarkerTimer.Interval = 1000;
+            MarkerTimer.Tick += MarkerTimer_Tick;
+
             PlayerW.Player.PlayStateChange += Player_PlayStateChange;
 
             if(playlist)
@@ -39,6 +43,42 @@ namespace MediaPlayer
                 treeView1.Dispose();
                 songLibrary.Dock = DockStyle.Fill;
                 playlistName = Playlist.playlistName;
+            }
+
+        }
+
+        void MarkerTimer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                trackBar1.Value = (int)((int)PlayerW.Player.controls.currentPosition * 1000) / (int)PlayerW.Player.currentMedia.duration;
+                
+                label1.Text = PlayerW.Player.controls.currentPosition.ToString();
+
+                duration1.Text = PlayerW.Player.controls.currentPositionString;
+                duration2.Text = PlayerW.Player.currentMedia.durationString;
+            }
+            catch {
+                trackBar1.Value = 0;
+                duration1.Text = "0:00:00";
+                duration2.Text = "0:00:00";
+            }
+        }
+
+        void resetTimer()
+        {
+            trackBar1.Value = (int)PlayerW.Player.controls.currentPosition;
+            duration1.Text = "0:00:00";
+            duration2.Text = "0:00:00";
+        }
+
+        void unselectAll()
+        {
+            songLibrary.SelectedItems.Clear();
+            
+            for (int i = 0; i < songLibrary.Items.Count; i++)
+            {
+                songLibrary.Items[i].Selected = false;
             }
         }
 
@@ -49,6 +89,7 @@ namespace MediaPlayer
                 if (Repeat)
                 {
                     PlayerW.Player.URL = songLibrary.SelectedItems[currentlyPlaying].Tag.ToString();
+                    PlayerW.Player.controls.play();
                 }
                 else
                 {
@@ -65,13 +106,18 @@ namespace MediaPlayer
                 return;
             }
 
+            if (PlayerW.Player.playState != WMPPlayState.wmppsPlaying)
+            {
+                btnPlay.PerformClick();
+                return;
+            }
+
             int i = currentlyPlaying;
 
             songLibrary.Items[currentlyPlaying].Selected = false;
 
             if (i == 0)
             {
-                PlayerW.Player.controls.stop();
                 PlayerW.Player.URL = songLibrary.Items[songLibrary.Items.Count - 1].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = songLibrary.Items.Count - 1;
@@ -79,7 +125,6 @@ namespace MediaPlayer
             else
             {
                 i--;
-                PlayerW.Player.controls.stop();
                 PlayerW.Player.URL = songLibrary.Items[i].Tag.ToString();
                 PlayerW.Player.controls.play();
                 currentlyPlaying = i;
@@ -97,6 +142,8 @@ namespace MediaPlayer
                 return;
             }
 
+            MarkerTimer.Enabled = true;
+            
             if (PlayerW.Player.playState == WMPPlayState.wmppsPaused)
             {
                 PlayerW.Player.controls.play();
@@ -105,11 +152,16 @@ namespace MediaPlayer
 
             songLibrary.Items[currentlyPlaying].Selected = false;
 
-            if (Shuffle)
+            if (Shuffle && songLibrary.SelectedItems.Count == 0)
             {
                 int rand = randGenerator.Next(0, songLibrary.Items.Count - 1);
+
+                while(rand == currentlyPlaying)
+                    rand = randGenerator.Next(0, songLibrary.Items.Count - 1);
+
                 PlayerW.Player.URL = songLibrary.Items[rand].Tag.ToString();
                 currentlyPlaying = rand;
+                unselectAll();
             }
             else
             {
@@ -163,6 +215,9 @@ namespace MediaPlayer
             PlayerW.Player.controls.stop();
             songLibrary.Items[currentlyPlaying].Selected = true;
             songLibrary.Focus();
+
+            MarkerTimer.Enabled = false;
+            resetTimer();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -173,6 +228,12 @@ namespace MediaPlayer
                 return;
             }
 
+            if (PlayerW.Player.playState != WMPPlayState.wmppsPlaying)
+            {
+                btnPlay.PerformClick();
+                return;
+            }
+
             int i = currentlyPlaying;
 
             songLibrary.Items[currentlyPlaying].Selected = false;
@@ -180,14 +241,18 @@ namespace MediaPlayer
             if (Shuffle)
             {
                 int rand = randGenerator.Next(0, songLibrary.Items.Count - 1);
+
+                while (rand == currentlyPlaying)
+                    rand = randGenerator.Next(0, songLibrary.Items.Count - 1);
+
                 PlayerW.Player.URL = songLibrary.Items[rand].Tag.ToString();
                 currentlyPlaying = rand;
+                unselectAll();
             }
             else
             {
                 if (i == songLibrary.Items.Count - 1)
                 {
-                    PlayerW.Player.controls.stop();
                     PlayerW.Player.URL = songLibrary.Items[0].Tag.ToString();
                     PlayerW.Player.controls.play();
                     currentlyPlaying = 0;
@@ -195,7 +260,6 @@ namespace MediaPlayer
                 else
                 {
                     i++;
-                    PlayerW.Player.controls.stop();
                     PlayerW.Player.URL = songLibrary.Items[i].Tag.ToString();
                     PlayerW.Player.controls.play();
                     currentlyPlaying = i;
@@ -385,9 +449,8 @@ namespace MediaPlayer
             if (CPF.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 reloadPlaylists();
+                treeView1.SelectedNode = treeView1.Nodes[1].LastNode;
             }
-
-            treeView1.SelectedNode = treeView1.Nodes[1].LastNode;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -396,6 +459,7 @@ namespace MediaPlayer
             {
                 Playlist.deletePlaylist(treeView1.SelectedNode.Text);
                 reloadPlaylists();
+                treeView1.SelectedNode = treeView1.Nodes[0];
             }
         }
 
@@ -611,13 +675,17 @@ namespace MediaPlayer
         private void goToCurrentSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
             songLibrary.Focus();
+            unselectAll();
 
-            for (int i = 0; i < songLibrary.Items.Count; i++)
+            for(int i = 0; i < songLibrary.Items.Count; i++)
             {
-                songLibrary.Items[i].Selected = false;
+                if (songLibrary.Items[i].Text == PlayerW.Player.currentMedia.name)
+                {
+                    songLibrary.Items[i].Selected = true;
+                    currentlyPlaying = i;
+                    return;
+                }
             }
-
-            songLibrary.Items[currentlyPlaying].Selected = true;
         }
 
         private void increaseVolumeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -667,6 +735,7 @@ namespace MediaPlayer
             }
 
             songLibrary.Sort();
+            goToCurrentSongToolStripMenuItem.PerformClick();
         }
 
     }
