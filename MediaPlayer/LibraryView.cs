@@ -31,6 +31,8 @@ namespace MediaPlayer
             PlayerW = PlayerWrapper.getInstance();
             randGenerator = new Random();
 
+            PlayerW.Player.PlayStateChange += Player_PlayStateChange;
+
             if(playlist)
             {
                 playlistView = true;
@@ -39,7 +41,22 @@ namespace MediaPlayer
                 playlistName = Playlist.playlistName;
             }
         }
-        
+
+        void Player_PlayStateChange(int NewState)
+        {
+            if (NewState == 8)
+            {
+                if (Repeat)
+                {
+                    PlayerW.Player.URL = songLibrary.SelectedItems[currentlyPlaying].Tag.ToString();
+                }
+                else
+                {
+                    btnNext.PerformClick();
+                }
+            }
+        }
+                
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (songLibrary.Items.Count == 0)
@@ -463,6 +480,11 @@ namespace MediaPlayer
                 btnPrev.PerformClick();
             }
 
+            if (e.Control && e.KeyCode.ToString() == "L")
+            {
+                goToCurrentSongToolStripMenuItem.PerformClick();
+            }
+
             if (e.Control && e.KeyCode.ToString() == "I")
             {
                 if (volumeBar1.Value < 100) 
@@ -588,7 +610,14 @@ namespace MediaPlayer
 
         private void goToCurrentSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            songLibrary.Focus();
 
+            for (int i = 0; i < songLibrary.Items.Count; i++)
+            {
+                songLibrary.Items[i].Selected = false;
+            }
+
+            songLibrary.Items[currentlyPlaying].Selected = true;
         }
 
         private void increaseVolumeToolStripMenuItem_Click(object sender, EventArgs e)

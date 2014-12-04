@@ -8,7 +8,6 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Database_lo
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\MediaPlayer.exe
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\MediaPlayer.pdb
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\EntityFramework.dll
-C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\UltraID3Lib.dll
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\EntityFramework.xml
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\UltraID3Lib.xml
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\bin\Release\Interop.WMPLib.dll
@@ -17,7 +16,6 @@ C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.pdb
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csprojResolveAssemblyReference.cache
 C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.CreatePlaylistForm.resources
-C:\Users\bishoy\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.playlistView.resources
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\Interop.WMPLib.dll
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\AxInterop.WMPLib.dll
 C:\Users\THE BOSS\Documents\GitHub\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.csproj.ResolveComReference.cache
