@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryView));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,8 +79,7 @@
             this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.clearRecentListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.playlistContextMenu.SuspendLayout();
             this.songLibViewOpts.SuspendLayout();
             this.songLibContext.SuspendLayout();
@@ -134,7 +133,7 @@
             this.songLibrary.LabelWrap = false;
             this.songLibrary.Location = new System.Drawing.Point(183, 0);
             this.songLibrary.Name = "songLibrary";
-            this.songLibrary.Size = new System.Drawing.Size(615, 505);
+            this.songLibrary.Size = new System.Drawing.Size(670, 486);
             this.songLibrary.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.songLibrary.TabIndex = 0;
             this.songLibrary.UseCompatibleStateImageBehavior = false;
@@ -263,20 +262,21 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Controls.Add(this.duration2);
             this.panel1.Controls.Add(this.duration1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.trackBar1);
-            this.panel1.Location = new System.Drawing.Point(12, 545);
+            this.panel1.Location = new System.Drawing.Point(12, 526);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(805, 98);
+            this.panel1.Size = new System.Drawing.Size(860, 117);
             this.panel1.TabIndex = 1;
             // 
             // duration2
             // 
             this.duration2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.duration2.AutoSize = true;
-            this.duration2.Location = new System.Drawing.Point(759, 27);
+            this.duration2.Location = new System.Drawing.Point(814, 45);
             this.duration2.Name = "duration2";
             this.duration2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.duration2.Size = new System.Drawing.Size(43, 13);
@@ -288,7 +288,7 @@
             // 
             this.duration1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.duration1.AutoSize = true;
-            this.duration1.Location = new System.Drawing.Point(3, 27);
+            this.duration1.Location = new System.Drawing.Point(3, 45);
             this.duration1.Name = "duration1";
             this.duration1.Size = new System.Drawing.Size(43, 13);
             this.duration1.TabIndex = 8;
@@ -304,15 +304,15 @@
             this.panel2.Controls.Add(this.btnStop);
             this.panel2.Controls.Add(this.btnPause);
             this.panel2.Controls.Add(this.btnPlay);
-            this.panel2.Location = new System.Drawing.Point(183, 27);
+            this.panel2.Location = new System.Drawing.Point(183, 46);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(439, 68);
+            this.panel2.Size = new System.Drawing.Size(494, 68);
             this.panel2.TabIndex = 6;
             // 
             // volumeBar1
             // 
             this.volumeBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.volumeBar1.Location = new System.Drawing.Point(20, 44);
+            this.volumeBar1.Location = new System.Drawing.Point(48, 44);
             this.volumeBar1.Maximum = 100;
             this.volumeBar1.Name = "volumeBar1";
             this.volumeBar1.Size = new System.Drawing.Size(398, 45);
@@ -329,7 +329,7 @@
             this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNext.Image = global::MediaPlayer.Properties.Resources.next;
-            this.btnNext.Location = new System.Drawing.Point(344, 2);
+            this.btnNext.Location = new System.Drawing.Point(372, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 33);
             this.btnNext.TabIndex = 5;
@@ -344,7 +344,7 @@
             this.btnPrev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPrev.Image = global::MediaPlayer.Properties.Resources.prev;
-            this.btnPrev.Location = new System.Drawing.Point(20, 2);
+            this.btnPrev.Location = new System.Drawing.Point(48, 2);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(75, 33);
             this.btnPrev.TabIndex = 1;
@@ -359,7 +359,7 @@
             this.btnStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnStop.Image = global::MediaPlayer.Properties.Resources.stop;
-            this.btnStop.Location = new System.Drawing.Point(263, 2);
+            this.btnStop.Location = new System.Drawing.Point(291, 2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 33);
             this.btnStop.TabIndex = 4;
@@ -374,7 +374,7 @@
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPause.Image = global::MediaPlayer.Properties.Resources.pause;
-            this.btnPause.Location = new System.Drawing.Point(101, 2);
+            this.btnPause.Location = new System.Drawing.Point(129, 2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 33);
             this.btnPause.TabIndex = 2;
@@ -389,7 +389,7 @@
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPlay.Image = global::MediaPlayer.Properties.Resources.play;
-            this.btnPlay.Location = new System.Drawing.Point(182, 2);
+            this.btnPlay.Location = new System.Drawing.Point(210, 2);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 33);
             this.btnPlay.TabIndex = 3;
@@ -400,10 +400,10 @@
             // 
             this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.Location = new System.Drawing.Point(2, 3);
+            this.trackBar1.Location = new System.Drawing.Point(0, 3);
             this.trackBar1.Maximum = 1000;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(798, 45);
+            this.trackBar1.Size = new System.Drawing.Size(853, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -415,7 +415,7 @@
             this.controlToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(829, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -519,9 +519,6 @@
             // 
             // playRecentToolStripMenuItem
             // 
-            this.playRecentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator5,
-            this.clearRecentListToolStripMenuItem});
             this.playRecentToolStripMenuItem.Name = "playRecentToolStripMenuItem";
             this.playRecentToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.playRecentToolStripMenuItem.Text = "Play Recent";
@@ -581,14 +578,14 @@
             this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(0, -2);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "libNode";
-            treeNode3.Text = "Library";
-            treeNode4.Name = "playlistsNode";
-            treeNode4.Text = "Playlists";
+            treeNode19.Name = "libNode";
+            treeNode19.Text = "Library";
+            treeNode20.Name = "playlistsNode";
+            treeNode20.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
-            this.treeView1.Size = new System.Drawing.Size(177, 507);
+            treeNode19,
+            treeNode20});
+            this.treeView1.Size = new System.Drawing.Size(177, 488);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -602,25 +599,29 @@
             this.mainPanel.Controls.Add(this.songLibrary);
             this.mainPanel.Location = new System.Drawing.Point(12, 27);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(805, 512);
+            this.mainPanel.Size = new System.Drawing.Size(860, 493);
             this.mainPanel.TabIndex = 4;
             // 
-            // clearRecentListToolStripMenuItem
+            // progressBar1
             // 
-            this.clearRecentListToolStripMenuItem.Name = "clearRecentListToolStripMenuItem";
-            this.clearRecentListToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.clearRecentListToolStripMenuItem.Text = "Clear Recent List";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(158, 6);
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.BackColor = System.Drawing.Color.White;
+            this.progressBar1.Enabled = false;
+            this.progressBar1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.progressBar1.Location = new System.Drawing.Point(3, 32);
+            this.progressBar1.MarqueeAnimationSpeed = 10;
+            this.progressBar1.Maximum = 1000;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(854, 10);
+            this.progressBar1.Step = 1;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 10;
             // 
             // LibraryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 656);
+            this.ClientSize = new System.Drawing.Size(884, 656);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
@@ -709,8 +710,7 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label duration2;
         private System.Windows.Forms.Label duration1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem clearRecentListToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

@@ -53,12 +53,26 @@ namespace MediaPlayer
             try
             {
                 trackBar1.Value = (int)((int)PlayerW.Player.controls.currentPosition * 1000) / (int)PlayerW.Player.currentMedia.duration;
-                
-                duration1.Text = PlayerW.Player.controls.currentPositionString;
-                duration2.Text = PlayerW.Player.currentMedia.durationString;
+                progressBar1.Value = trackBar1.Value;
+
+                TimeSpan a = new TimeSpan(Convert.ToInt32(PlayerW.Player.controls.currentItem.duration) * 10000000);
+                if (a < TimeSpan.Zero)
+                    a = new TimeSpan(a.Ticks * -1);
+
+                TimeSpan b = new TimeSpan(Convert.ToInt32(PlayerW.Player.controls.currentPosition) * 10000000);
+                if (b < TimeSpan.Zero)
+                    b = new TimeSpan(b.Ticks * -1);
+
+                TimeSpan c = a - b;
+                if (c < TimeSpan.Zero)
+                    c = new TimeSpan(c.Ticks * -1);
+
+                duration1.Text = b.ToString("h\\:mm\\:ss");
+                duration2.Text = c.ToString("h\\:mm\\:ss");
             }
             catch {
                 trackBar1.Value = 0;
+                progressBar1.Value = 0;
                 duration1.Text = "0:00:00";
                 duration2.Text = "0:00:00";
             }
@@ -73,6 +87,7 @@ namespace MediaPlayer
         void resetTimer()
         {
             trackBar1.Value = (int)PlayerW.Player.controls.currentPosition;
+            progressBar1.Value = trackBar1.Value;
             duration1.Text = "0:00:00";
             duration2.Text = "0:00:00";
         }
