@@ -98,6 +98,24 @@ namespace MediaPlayer
             Execute("INSERT INTO Recent (songID) VALUES (" + id + ");");
         }
 
+        public List<int> LoadRecent()
+        {
+            List<int> sett = new List<int>();
+
+            SqlCommand SettingsCommand = new SqlCommand("SELECT * FROM Recent;", connection);
+
+            SqlDataReader reader = SettingsCommand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sett.Add(Convert.ToInt32(reader["songID"]));
+            }
+
+            reader.Close();
+
+            return sett;
+        }
+
         public bool Insert(string file)
         {
             if (connection.State == ConnectionState.Closed)
