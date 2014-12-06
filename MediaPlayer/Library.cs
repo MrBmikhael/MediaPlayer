@@ -104,6 +104,9 @@ namespace MediaPlayer
 
                 delete = new SqlCommand("DELETE FROM PlaylistSongs WHERE songID = " + id.ToString() + ";", SQLManager.getInstance().connection);
                 delete.ExecuteNonQuery();
+
+                delete = new SqlCommand("DELETE FROM Recent WHERE songID = " + id.ToString() + ";", SQLManager.getInstance().connection);
+                delete.ExecuteNonQuery();
             }
             catch { }
         }

@@ -815,7 +815,7 @@ namespace MediaPlayer
             }
         }
 
-        private void playRecentToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        private void controlToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             playRecentToolStripMenuItem.DropDownItems.Clear();
             loadRecent();
