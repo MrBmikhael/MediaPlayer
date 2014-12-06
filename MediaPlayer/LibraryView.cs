@@ -734,15 +734,19 @@ namespace MediaPlayer
             songLibrary.Focus();
             unselectAll();
 
-            for(int i = 0; i < songLibrary.Items.Count; i++)
+            try
             {
-                if (songLibrary.Items[i].Text == PlayerW.Player.currentMedia.name)
+                for (int i = 0; i < songLibrary.Items.Count; i++)
                 {
-                    songLibrary.Items[i].Selected = true;
-                    currentlyPlaying = i;
-                    return;
+                    if (songLibrary.Items[i].Text == PlayerW.Player.currentMedia.name)
+                    {
+                        songLibrary.Items[i].Selected = true;
+                        currentlyPlaying = i;
+                        return;
+                    }
                 }
             }
+            catch { }
         }
 
         private void increaseVolumeToolStripMenuItem_Click(object sender, EventArgs e)
