@@ -23,8 +23,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryView));
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Playlists");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Playlists");
             this.playlistContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openInANewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +71,7 @@
             this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.previousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playRecentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.goToCurrentSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.increaseVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,6 @@
             this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.playlistContextMenu.SuspendLayout();
             this.songLibViewOpts.SuspendLayout();
             this.songLibContext.SuspendLayout();
@@ -279,20 +279,21 @@
             this.progressBar1.BackColor = System.Drawing.Color.White;
             this.progressBar1.Enabled = false;
             this.progressBar1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.progressBar1.Location = new System.Drawing.Point(3, 32);
+            this.progressBar1.Location = new System.Drawing.Point(48, 32);
             this.progressBar1.MarqueeAnimationSpeed = 10;
             this.progressBar1.Maximum = 1000;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(854, 10);
+            this.progressBar1.Size = new System.Drawing.Size(765, 10);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 10;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // duration2
             // 
             this.duration2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.duration2.AutoSize = true;
-            this.duration2.Location = new System.Drawing.Point(814, 45);
+            this.duration2.Location = new System.Drawing.Point(813, 29);
             this.duration2.Name = "duration2";
             this.duration2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.duration2.Size = new System.Drawing.Size(43, 13);
@@ -304,7 +305,7 @@
             // 
             this.duration1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.duration1.AutoSize = true;
-            this.duration1.Location = new System.Drawing.Point(3, 45);
+            this.duration1.Location = new System.Drawing.Point(3, 29);
             this.duration1.Name = "duration1";
             this.duration1.Size = new System.Drawing.Size(43, 13);
             this.duration1.TabIndex = 8;
@@ -516,21 +517,24 @@
             // playToolStripMenuItem
             // 
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            this.playToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.playToolStripMenuItem.ShortcutKeyDisplayString = "Space";
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.playToolStripMenuItem.Text = "Play";
             this.playToolStripMenuItem.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // nextToolStripMenuItem
             // 
             this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
-            this.nextToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.nextToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + RArrow";
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.nextToolStripMenuItem.Text = "Next";
             this.nextToolStripMenuItem.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // previousToolStripMenuItem
             // 
             this.previousToolStripMenuItem.Name = "previousToolStripMenuItem";
-            this.previousToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.previousToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + LArrow";
+            this.previousToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.previousToolStripMenuItem.Text = "Previous";
             this.previousToolStripMenuItem.Click += new System.EventHandler(this.btnPrev_Click);
             // 
@@ -542,10 +546,16 @@
             this.playRecentToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.playRecentToolStripMenuItem.Text = "Play Recent";
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(57, 6);
+            // 
             // goToCurrentSongToolStripMenuItem
             // 
             this.goToCurrentSongToolStripMenuItem.Name = "goToCurrentSongToolStripMenuItem";
-            this.goToCurrentSongToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.goToCurrentSongToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + L";
+            this.goToCurrentSongToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.goToCurrentSongToolStripMenuItem.Text = "Go to Current Song";
             this.goToCurrentSongToolStripMenuItem.Click += new System.EventHandler(this.goToCurrentSongToolStripMenuItem_Click);
             // 
@@ -557,14 +567,16 @@
             // increaseVolumeToolStripMenuItem
             // 
             this.increaseVolumeToolStripMenuItem.Name = "increaseVolumeToolStripMenuItem";
-            this.increaseVolumeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.increaseVolumeToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + I";
+            this.increaseVolumeToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.increaseVolumeToolStripMenuItem.Text = "Increase Volume";
             this.increaseVolumeToolStripMenuItem.Click += new System.EventHandler(this.increaseVolumeToolStripMenuItem_Click);
             // 
             // decreaseVolumeToolStripMenuItem
             // 
             this.decreaseVolumeToolStripMenuItem.Name = "decreaseVolumeToolStripMenuItem";
-            this.decreaseVolumeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.decreaseVolumeToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + D";
+            this.decreaseVolumeToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.decreaseVolumeToolStripMenuItem.Text = "Decrease Volume";
             this.decreaseVolumeToolStripMenuItem.Click += new System.EventHandler(this.decreaseVolumeToolStripMenuItem_Click);
             // 
@@ -596,13 +608,13 @@
             this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(0, -2);
             this.treeView1.Name = "treeView1";
-            treeNode3.Name = "libNode";
-            treeNode3.Text = "Library";
-            treeNode4.Name = "playlistsNode";
-            treeNode4.Text = "Playlists";
+            treeNode9.Name = "libNode";
+            treeNode9.Text = "Library";
+            treeNode10.Name = "playlistsNode";
+            treeNode10.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode9,
+            treeNode10});
             this.treeView1.Size = new System.Drawing.Size(177, 488);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -619,11 +631,6 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(860, 493);
             this.mainPanel.TabIndex = 4;
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // LibraryView
             // 
